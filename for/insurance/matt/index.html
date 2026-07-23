@@ -12,25 +12,23 @@
   <meta content="Qualified the instant they submit. In your team's WhatsApp in seconds. S$1,500/month + your ad spend." property="og:description"/>
   <meta content="website" property="og:type"/>
   <meta content="https://www.leadly.sg/for/insurance" property="og:url"/>
-  <script async="" src="js/gtm.js">
-  </script>
   <script>
    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5TR4KNPK');
   </script>
-  <script src="js/leadly-data.js">
+  <script src="/assets/leadly-data.js">
   </script>
   <script>
    console.log('%c✔ LEADLY build 2026-07-17 · calc-hardened + blobs-fix','color:#0055E8;font-weight:700;font-size:14px');
   </script>
   <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
-  <link href="css/brand.css" rel="stylesheet"/>
-  <link href="css/leadly-reel.css" rel="stylesheet"/>
-  <link href="css/leadly-components.css" rel="stylesheet"/>
-  <link href="css/leadly-process.css" rel="stylesheet"/>
-  <link href="css/leadly-lockscreen.css" rel="stylesheet"/>
-  <link href="css/leadly-funnels.css" rel="stylesheet"/>
-  <link href="css/leadly-analysis.css" rel="stylesheet"/>
-  <link href="css/leadly-book.css" rel="stylesheet"/>
+  <link href="/assets/brand.css" rel="stylesheet"/>
+  <link href="/assets/leadly-reel.css" rel="stylesheet"/>
+  <link href="/assets/leadly-components.css" rel="stylesheet"/>
+  <link href="/assets/leadly-process.css" rel="stylesheet"/>
+  <link href="/assets/leadly-lockscreen.css" rel="stylesheet"/>
+  <link href="/assets/leadly-funnels.css" rel="stylesheet"/>
+  <link href="/assets/leadly-analysis.css" rel="stylesheet"/>
+  <link href="/assets/leadly-book.css" rel="stylesheet"/>
   <style>
    /* ══════════════════════════════════════════════════════════════════════════
    PAGE-SPECIFIC LAYOUT ONLY. Every colour / type / radius / space is a token.
@@ -40,15 +38,8 @@
 /* ── NAV — the wordmark ────────────────────────────────────────────────── */
 .nav-logo img{ height:22px; width:auto; display:block; }
 
-/* ── S1 · HERO — the stage, now full-bleed ─────────────────────────────── */
-.hero{ padding: 0; }
-.hero .container{ max-width: none; padding: 0; }
-.hero .stage-dark{
-  border-radius: 0;
-  min-height: min(calc(50svh - 31px), 560px) !important;
-}
-.hero .hero-head{ max-width: var(--container); margin: 0 auto; width: 100%;
-  padding: 0 var(--gutter); box-sizing: border-box; }
+/* ── S1 · HERO — the stage ─────────────────────────────────────────────── */
+.hero{ padding: clamp(24px,3vw,44px) 0 0; }
 .hero .stage-dark{
   /* Real padding on ALL FOUR sides — the copy must never touch the border.
      The phone still bleeds off the bottom: it is absolutely positioned inside
@@ -63,7 +54,7 @@
 
 .hero-head{ display:grid; grid-template-columns: minmax(0,1.04fr) minmax(0,.96fr);
   gap:clamp(24px,3vw,48px); align-items:center; }
-.hero .display{ max-width:17ch; font-size:clamp(40px, calc(4.4vw + 8px), 66px); }
+.hero .display{ max-width:17ch; }
 
 /* The phone is anchored to the BOTTOM of the panel, not to the top of its
    column — so it keeps bleeding off the edge by a fixed amount no matter how
@@ -72,12 +63,8 @@
 .hero-media{ position:relative; align-self:stretch; min-height:clamp(330px,32vw,430px); }
 .hero-media > div{
   position:absolute; left:50%;
-  bottom: calc(-1 * (clamp(44px,5.6vw,72px) + 110px));  /* clear the padding, then bleed deeper — the stage's overflow:hidden crops it */
+  bottom: calc(-1 * (clamp(44px,5.6vw,72px) + 46px));   /* clear the padding, then bleed 46px */
   transform:translateX(-50%);
-}
-/* a larger handset — desktop only; mobile keeps its own sizing below */
-@media (min-width:861px){
-  .hero .lockscreen .phone{ --pw:340px; }
 }
 .hero-lead{ font-size:clamp(15.5px,1.15vw,17.5px); color:var(--on-panel-2); max-width:46ch; margin-top:20px; line-height:1.6; }
 .hero-cta{ display:flex; gap:12px; margin-top:26px; flex-wrap:wrap; align-items:center; }
@@ -158,102 +145,6 @@
 .pulse-media:has([data-leadly-tour]){ padding:0; overflow:hidden; }
 .pulse-media [data-leadly-tour]{ display:block; width:100%; aspect-ratio:1/1; border-radius:inherit; }
 
-/* ── S4 · PRICING — the table is the whole section ──────────────────────────
-   The offer list and the price card are gone. They said the same thing the
-   table says, twice, and the table says it better because it says it against
-   the alternative. What could NOT go with them is the price itself, so it
-   moves up top, on its own line, where it is the first thing read. */
-.price-line{
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:center;
-  gap:clamp(20px,3vw,40px);
-  margin-top:32px; padding:24px 26px;
-  border:1px solid var(--tint-line); border-radius:var(--r-xl);
-  background:var(--tint);
-}
-.price-fig{ display:flex; align-items:baseline; gap:12px; flex:none; }
-.price-fig .fig{
-  font-size:clamp(38px,4.4vw,54px); font-weight:800; line-height:1;
-  letter-spacing:var(--tracking-display); color:var(--text-1);
-  font-variant-numeric:tabular-nums;
-}
-.price-fig .per{ font-size:14px; line-height:1.35; color:var(--text-2); font-weight:500; }
-.price-fig .per b{ display:block; color:var(--accent-ink); font-weight:600; }
-.price-note{ font-size:13.5px; line-height:1.55; color:var(--text-2); }
-.price-line .btn{ flex:none; }
-
-@media (max-width:860px){
-  .price-line{ grid-template-columns:minmax(0,1fr); gap:16px; padding:22px; text-align:left; }
-  .price-line .btn{ justify-content:center; }
-}
-
-.tick-svg circle{ fill:#FFFFFF; }
-.tick-svg path{ stroke:var(--accent-ink); stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round;
-  stroke-dasharray:16; stroke-dashoffset:16; animation:tick-draw 3s var(--ease) infinite; }
-@keyframes tick-draw{ 0%{stroke-dashoffset:16} 26%,74%{stroke-dashoffset:0} 100%{stroke-dashoffset:16} }
-.cross-svg path{ stroke:var(--text-3); stroke-width:2.2; fill:none; stroke-linecap:round; }
-
-/* ── S7 · COMPARISON ────────────────────────────────────────────────────────
-   THIS STAYS A TABLE. At every width, on every device.
-
-   Two wrong answers were tried before this one:
-     · `overflow-x:auto` on a 640px min-width table — two thirds of it sat
-       off-screen behind a sideways scroll nobody finds. Hidden.
-     · stacked cards on mobile — visible, but it stopped being a comparison.
-       A comparison table only argues when the two columns sit SIDE BY SIDE and
-       your eye can cross between them. Stack them and the argument is gone.
-
-   So the structure never changes — three columns, always. What changes is the
-   WORDS. Every cell carries a long form and a short form; the phone gets the
-   short one. The table shrinks by saying less, not by breaking apart.        */
-.cmp{ margin-top:46px; }
-.cmp table{ width:100%; border-collapse:collapse; table-layout:fixed; }
-.cmp th, .cmp td{ text-align:left; padding:16px 18px; font-size:15px; border-bottom:1px solid var(--line); vertical-align:top; }
-.cmp thead th{ font-size:12px; font-weight:600; letter-spacing:var(--tracking-eyebrow); text-transform:uppercase;
-  color:var(--text-3-aa); border-bottom:1px solid var(--line-strong); background:transparent; }
-.cmp thead th.us{ color:var(--accent-ink); background:var(--tint); }
-.cmp .crit{ width:30%; color:var(--text-2); font-weight:600; }
-.cmp td.crit{ color:var(--text-1); }
-.cmp th.us, .cmp td.us{ width:35%; }
-.cmp td.us{ color:var(--text-1); font-weight:600; background:var(--tint); }
-.cmp td.them{ color:var(--text-3-aa); }
-.cmp tbody tr:last-child td{ border-bottom:0; }
-.cmp .cell{ display:flex; align-items:flex-start; gap:9px; line-height:1.45; }
-.cmp .cell svg{ flex:none; margin-top:2px; }
-
-/* the two forms of every cell */
-.cmp .sm{ display:none; }
-.cmp .lg{ display:inline; }
-
-/* the group headers */
-.cmp tr.grp td{
-  padding:26px 18px 10px; border-bottom:1px solid var(--line-strong);
-  font-size:11.5px; font-weight:600; letter-spacing:var(--tracking-eyebrow);
-  text-transform:uppercase; color:var(--text-1); background:transparent;
-}
-
-@media (max-width:760px){
-  /* STILL A TABLE. Tighter, and it says less. */
-  .cmp .lg{ display:none; }
-  .cmp .sm{ display:inline; }
-  .cmp table{ table-layout:fixed; }
-  .cmp th, .cmp td{ padding:11px 8px; font-size:12.5px; }
-  .cmp thead th{ font-size:9.5px; letter-spacing:.06em; padding:9px 8px; }
-  .cmp .crit{ width:28%; font-size:12.5px; }
-  .cmp th.us, .cmp td.us{ width:36%; }
-  .cmp .cell{ gap:6px; line-height:1.35; }
-  .cmp .cell svg{ width:14px; height:14px; margin-top:1px; }
-  .cmp tr.grp td{ padding:18px 8px 8px; font-size:9.5px; }
-}
-@media (max-width:380px){
-  .cmp th, .cmp td{ padding:10px 6px; font-size:11.5px; }
-  .cmp thead th{ font-size:9px; }
-  .cmp .cell svg{ width:12px; height:12px; }
-  .cmp .cell{ gap:5px; }
-}
-
-
 /* ── ADD-ONS — a drawer, not a page ────────────────────────────────────────
    This used to link out to /for/insurance/pricing/. Sending a prospect who is
    reading your price OFF the page to read more price is how you lose them. It
@@ -313,6 +204,87 @@
 }
 .ao-close:hover{ border-color:var(--accent); color:var(--accent-ink); }
 .ao-close svg{ width:15px; height:15px; }
+
+/* ── PRICING TABLE — three-column comparison (Managed / Compliant / agency) ── */
+#pricing.section{ padding-top: var(--space-7); }
+.pt{ border:1px solid var(--line); border-radius:20px; background:var(--surface);
+  box-shadow:var(--shadow-md); overflow:hidden; }
+.pt-scroll{ overflow-x:auto; }
+.pt-inner{ min-width:880px; }
+.pt-row{ display:grid; grid-template-columns:minmax(230px,1.25fr) repeat(2,minmax(200px,1fr)) minmax(190px,.95fr);
+  border-bottom:1px solid var(--line); position:relative; }
+.pt-row:last-child{ border-bottom:0; }
+.pt-cell{ padding:11px 18px; display:flex; flex-direction:column; justify-content:center; gap:3px;
+  border-left:1px solid var(--line); transition:background var(--dur-2) var(--ease); }
+.pt-cell:first-child{ border-left:0; }
+.pt-cell.is-us{ background:var(--tint); }
+.pt-row:not(.pt-head):hover .pt-cell{ background:var(--surface-2); }
+.pt-row:not(.pt-head):hover .pt-cell.is-us{ background:#DFE9FD; }
+.pt-head{ background:var(--surface); border-bottom:1px solid var(--line-strong); }
+.pt-head .pt-cell{ padding:16px 18px 14px; justify-content:flex-end; }
+.pt-col-kicker{ font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-3-aa); margin-bottom:4px; }
+.pt-cell.is-us .pt-col-kicker{ color:var(--accent-strong); }
+.pt-col-name{ font-size:16px; font-weight:700; line-height:1.2; margin-bottom:8px; }
+.pt-agency-note{ font-size:13px; color:var(--text-3-aa); line-height:1.5; }
+.pt-hp{ display:flex; flex-direction:column; gap:2px; }
+.pt-hp-line{ font-size:12.5px; font-weight:500; color:var(--text-2); line-height:1.4; }
+.pt-hp-line b{ font-size:15px; font-weight:800; letter-spacing:-.01em; color:var(--text-1);
+  font-variant-numeric:tabular-nums; }
+.pt-hp-line.is-zero b{ color:var(--accent-ink); }
+.pt-hp.is-them .pt-hp-line, .pt-hp.is-them .pt-hp-line b{ color:var(--text-3-aa); }
+.pt-hp.is-them{ margin-bottom:8px; }
+.pt-corner{ justify-content:flex-end !important; }
+.pt-corner-label{ font-size:12px; font-weight:600; letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase; color:var(--text-3-aa); }
+.pt-feat-name{ font-size:14px; font-weight:600; color:var(--text-1); }
+.pt-feat-desc{ font-size:11.5px; color:var(--text-3-aa); line-height:1.45; }
+.pt-mark{ display:flex; align-items:flex-start; gap:10px; }
+.pt-note{ font-size:12px; line-height:1.4; color:var(--text-2); padding-top:1px; }
+.pt-cell.is-us .pt-note{ color:var(--text-1); }
+.pt-note em{ font-style:normal; color:var(--accent-strong); font-weight:600; }
+.pt-cell.is-them .pt-note{ color:var(--text-3-aa); }
+.pt .tick{ width:17px; height:17px; flex:none; }
+.pt .tick circle{ fill:var(--accent); }
+.pt .tick path{ stroke:#fff; stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:16; stroke-dashoffset:16; }
+.pt-cell.is-them .tick circle{ fill:var(--line-strong); }
+.pt-cell.is-them .tick path{ stroke:var(--text-2); }
+.pt .cross{ width:15px; height:15px; flex:none; margin-top:2px; }
+.pt .cross path{ stroke:var(--text-3); stroke-width:2.2; fill:none; stroke-linecap:round; }
+.pt-row.in .tick path{ animation:pt-tickdraw .45s var(--ease-out) forwards; }
+.pt-row.in .pt-cell:nth-child(2) .tick path{ animation-delay:.05s; }
+.pt-row.in .pt-cell:nth-child(3) .tick path{ animation-delay:.16s; }
+.pt-row.in .pt-cell:nth-child(4) .tick path{ animation-delay:.27s; }
+@keyframes pt-tickdraw{ to{ stroke-dashoffset:0; } }
+.pt-row{ opacity:0; transform:translateY(10px);
+  transition:opacity .5s var(--ease-out), transform .5s var(--ease-out); }
+.pt-row.in{ opacity:1; transform:none; }
+.pt-cta{ display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:8px 16px; border-radius:var(--r-pill); border:0; cursor:pointer;
+  font-family:var(--font); font-size:12.5px; font-weight:600; width:max-content;
+  text-decoration:none;
+  transition:background var(--dur-2) var(--ease), transform var(--dur-2) var(--ease),
+             box-shadow var(--dur-2) var(--ease); }
+.pt-cta.is-primary{ background:linear-gradient(180deg,#2A6BF0 0%, var(--accent) 55%, #0049CC 100%);
+  color:#fff; box-shadow:0 1px 2px rgba(0,60,190,.35); }
+.pt-cta.is-primary:hover{ background:var(--accent-hover); transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,60,190,.3); }
+.pt-cta.is-secondary{ background:var(--surface); color:var(--text-1); border:1px solid var(--line-strong); }
+.pt-cta.is-secondary:hover{ border-color:var(--accent); color:var(--accent-ink); transform:translateY(-1px); }
+@media (prefers-reduced-motion:reduce){
+  .pt-row{ opacity:1; transform:none; transition:none; }
+  .pt .tick path{ stroke-dashoffset:0; animation:none !important; }
+}
+@media (max-width:760px){
+  .pt-cell{ padding:14px 14px; }
+  .pt-head .pt-cell{ padding:20px 14px 16px; }
+  .pt-hp-line{ font-size:11px; }
+  .pt-hp-line b{ font-size:13px; }
+  .pt-feat-name{ font-size:13.5px; }
+  .pt-note, .pt-feat-desc{ font-size:11.5px; }
+}
+
 
 @media (max-width:760px){
   .ao-row{ grid-template-columns:minmax(0,1fr); gap:5px; }
@@ -754,28 +726,8 @@
 .num .src{ margin-top:auto; padding-top:10px; font-size:11.5px; color:var(--text-3-aa);
   border-top:1px solid var(--line); line-height:1.45; }
 .nums-note{ margin-top:18px; font-size:12.5px; color:var(--text-3-aa); }
-/* the gauges — every figure gets drawn, not just stated */
-.num-gauge{ height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; margin:2px 0 4px; }
-.num-gauge i{ display:block; height:100%; width:0; border-radius:99px;
-  background:linear-gradient(90deg,var(--accent),#7BA2F6);
-  transition:width 1.2s cubic-bezier(.16,1,.3,1) .15s; }
-.num.fx-in .num-gauge i{ width:var(--pct); }
-/* the 29hrs card argues by comparison: their day, your seconds */
-.num-vs{ display:grid; gap:7px; margin:2px 0 4px; }
-.num-vs .row{ display:grid; grid-template-columns:48px 1fr auto; gap:8px; align-items:center;
-  font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3-aa); }
-.num-vs .track{ height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; }
-.num-vs i{ display:block; height:100%; width:0; border-radius:99px;
-  transition:width 1.2s cubic-bezier(.16,1,.3,1) .2s; }
-.num-vs i.them{ background:var(--line-strong); }
-.num-vs i.us{ background:linear-gradient(90deg,var(--accent),#7BA2F6); }
-.num.fx-in .num-vs i{ width:var(--pct); }
-.num-vs b{ font-size:11.5px; color:var(--text-1); font-variant-numeric:tabular-nums; letter-spacing:0; }
 /* the page's core stat gets the tint */
 .num.is-key{ background:var(--tint); border-color:var(--tint-line); }
-@media (prefers-reduced-motion: reduce){
-  .num-gauge i, .num-vs i{ width:var(--pct); transition:none; }
-}
   </style>
   <style id="leadly-tour-css">
    [data-leadly-tour] [data-omelette-chrome]{display:none !important}
@@ -804,166 +756,42 @@
    </iframe>
   </noscript>
   <!-- ═══════════ NAV ═══════════ -->
-  <nav class="nav is-stuck">
-   <div class="nav-in">
+<nav class="nav">
+  <div class="nav-in">
     <!-- KENNETH: drop your real logo at /assets/leadly-logo.png and replace the
          .nav-mark svg + wordmark with: <img src="/assets/leadly-logo.png" alt="Leadly"> -->
-    <a class="nav-logo" href="/">
-     <img alt="Leadly" src="images/leadly-logo.png"/>
-    </a>
+    <a href="/" class="nav-logo"><img src="/assets/leadly-logo.png" alt="Leadly"></a>
     <div class="nav-right">
-     <a class="btn btn-secondary" href="https://app.leadly.sg/demo" rel="noopener" target="_blank">
-      <span>
-       Leadly Pulse
-      </span>
-     </a>
-     <a class="btn btn-primary" data-book="" href="#">
-      <span>
-       Book demo
-      </span>
-      <i aria-hidden="true" class="btn-ico">
-      </i>
-     </a>
+      <a class="btn btn-secondary" href="https://app.leadly.sg/demo" target="_blank" rel="noopener"><span>Leadly Pulse</span></a>
+      <a class="btn btn-primary" href="#" data-book><span>Book demo</span><i class="btn-ico" aria-hidden="true"></i></a>
     </div>
-   </div>
-  </nav>
-  <!-- ═══════════ S1 · HERO — the stage ═══════════ -->
-  <header class="hero" id="top">
-   <div class="container">
+  </div>
+</nav>
+
+<!-- ═══════════ S1 · HERO — the stage ═══════════ -->
+<header class="hero" id="top">
+  <div class="container">
     <div class="stage-dark tex-dark">
-     <div class="hero-head">
-      <div class="hero-copy">
-       <h1 class="display">
-        Qualified Leads,
-        <span class="accent">
-         Straight to WhatsApp
-        </span>
-       </h1>
-       <p class="hero-lead">
-        Stop wasting time chasing cold leads. We attract, qualify, and deliver prospects who are ready to have a conversation.
-       </p>
-       <div class="hero-cta">
-        <a class="btn btn-primary" data-book="" href="#">
-         <span>
-          Book demo
-         </span>
-         <i aria-hidden="true" class="btn-ico">
-         </i>
-        </a>
-        <a class="btn btn-secondary" href="#system">
-         <span>
-          See how it works
-         </span>
-        </a>
-       </div>
-      </div>
-      <!-- INSTANT PING, shown not described: leads land on the lock screen
+      <div class="hero-head">
+        <div class="hero-copy">
+          <h1 class="display">Qualified Leads,<br><span class="accent">Straight to WhatsApp.</span></h1>
+          <p class="hero-lead">Stop wasting time chasing cold leads. We attract, qualify, and deliver prospects who are ready to have a conversation.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#" data-book><span>Book demo</span><i class="btn-ico" aria-hidden="true"></i></a>
+            <a class="btn btn-secondary" href="#system"><span>See how it works</span></a>
+          </div>
+        </div>
+        <!-- INSTANT PING, shown not described: leads land on the lock screen
              and the handset buzzes. The phone bleeds off the bottom of the
              stage — the panel's overflow:hidden does the cropping. -->
-      <div class="hero-media">
-       <div class="lockscreen" data-leadly-lock="">
-        <div class="phone is-buzz">
-         <div class="screen">
-          <div class="ls-time">
-           <span class="ls-date">
-            Sunday, 19 July
-           </span>
-           <span class="ls-clock">
-            9:10
-           </span>
-          </div>
-          <div aria-label="Incoming qualified leads" aria-live="polite" class="ls-notes" role="log">
-           <div class="ls-note is-new">
-            <span class="ls-app">
-             <svg aria-hidden="true" viewbox="0 0 24 24">
-              <path d="M12.04 2A9.9 9.9 0 0 0 2.13 11.9c0 1.75.46 3.46 1.34 4.97L2 22.4l5.66-1.45a9.86 9.86 0 0 0 4.38 1.03h.01a9.9 9.9 0 0 0 9.9-9.9A9.9 9.9 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.36.86.9-3.27-.2-.32a8.2 8.2 0 1 1 7.15 4.06Zm4.5-6.14c-.24-.13-1.45-.72-1.68-.8-.23-.08-.4-.13-.56.12s-.64.8-.79.97c-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-1.98-1.22 7.42 7.42 0 0 1-1.37-1.7c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.14.16-.25.24-.41.08-.17.04-.31-.02-.44-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.62 4.15 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.45-.6 1.65-1.17.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.46-.29Z" fill="#fff">
-              </path>
-             </svg>
-            </span>
-            <span class="ls-body">
-             <span class="ls-row">
-              <span class="ls-name">
-               Leadly · New Leads
-              </span>
-              <span class="ls-ago">
-               now
-              </span>
-             </span>
-             <span class="ls-title">
-              <b>
-               Daniel L.
-              </b>
-              <span class="sep">
-               ·
-              </span>
-              <span class="want">
-               Retirement
-              </span>
-             </span>
-             <span class="ls-text">
-              S$4–6k/mo wanted · ready now
-             </span>
-            </span>
-           </div>
-           <div class="ls-note is-new">
-            <span class="ls-app">
-             <svg aria-hidden="true" viewbox="0 0 24 24">
-              <path d="M12.04 2A9.9 9.9 0 0 0 2.13 11.9c0 1.75.46 3.46 1.34 4.97L2 22.4l5.66-1.45a9.86 9.86 0 0 0 4.38 1.03h.01a9.9 9.9 0 0 0 9.9-9.9A9.9 9.9 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.36.86.9-3.27-.2-.32a8.2 8.2 0 1 1 7.15 4.06Zm4.5-6.14c-.24-.13-1.45-.72-1.68-.8-.23-.08-.4-.13-.56.12s-.64.8-.79.97c-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-1.98-1.22 7.42 7.42 0 0 1-1.37-1.7c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.14.16-.25.24-.41.08-.17.04-.31-.02-.44-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.62 4.15 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.45-.6 1.65-1.17.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.46-.29Z" fill="#fff">
-              </path>
-             </svg>
-            </span>
-            <span class="ls-body">
-             <span class="ls-row">
-              <span class="ls-name">
-               Leadly · New Leads
-              </span>
-              <span class="ls-ago">
-               1m ago
-              </span>
-             </span>
-             <span class="ls-title">
-              <b>
-               Jasmine T.
-              </b>
-              <span class="sep">
-               ·
-              </span>
-              <span class="want">
-               Income protection
-              </span>
-             </span>
-             <span class="ls-text">
-              S$100–300/mo · starting this month
-             </span>
-            </span>
-           </div>
-          </div>
-          <div class="ls-foot">
-           <div class="ls-bar">
-           </div>
-          </div>
-          <div class="gloss">
-          </div>
-         </div>
-         <div class="island">
-          <i>
-          </i>
-         </div>
-         <div class="btn-vol">
-         </div>
-         <div class="btn-vol b2">
-         </div>
-         <div class="btn-pow">
-         </div>
-        </div>
-       </div>
+        <div class="hero-media"><div data-leadly-lock></div></div>
       </div>
-     </div>
     </div>
-   </div>
-  </header>
+  </div>
+
+</header>
   <!-- ═══════════ LOGO MARQUEE ═══════════ -->
-  <div class="marquee fx-rise fx-in">
+  <div class="marquee">
    <div class="container">
     <p class="cap">
      We've built lead systems for individual agents and teams inside:
@@ -973,28 +801,28 @@
        if you add or remove a logo, change it in BOTH halves. -->
    <div class="mq-track" id="mqTrack">
     <span class="mq-item">
-     <img alt="Prudential" src="images/prudential.png" style="height:54px"/>
+     <img alt="Prudential" src="/assets/logos/prudential.png" style="height:54px"/>
     </span>
     <span class="mq-item">
-     <img alt="AIA" src="images/aia.png" style="height:52px"/>
+     <img alt="AIA" src="/assets/logos/aia.png" style="height:52px"/>
     </span>
     <span class="mq-item">
-     <img alt="Great Eastern" src="images/great-eastern.png" style="height:36px"/>
+     <img alt="Great Eastern" src="/assets/logos/great-eastern.png" style="height:36px"/>
     </span>
     <span class="mq-item">
-     <img alt="NTUC Income" src="images/ntuc-income.png" style="height:34px"/>
+     <img alt="NTUC Income" src="/assets/logos/ntuc-income.png" style="height:34px"/>
     </span>
     <span aria-hidden="true" class="mq-item">
-     <img alt="" src="images/prudential.png" style="height:54px"/>
+     <img alt="" src="/assets/logos/prudential.png" style="height:54px"/>
     </span>
     <span aria-hidden="true" class="mq-item">
-     <img alt="" src="images/aia.png" style="height:52px"/>
+     <img alt="" src="/assets/logos/aia.png" style="height:52px"/>
     </span>
     <span aria-hidden="true" class="mq-item">
-     <img alt="" src="images/great-eastern.png" style="height:36px"/>
+     <img alt="" src="/assets/logos/great-eastern.png" style="height:36px"/>
     </span>
     <span aria-hidden="true" class="mq-item">
-     <img alt="" src="images/ntuc-income.png" style="height:34px"/>
+     <img alt="" src="/assets/logos/ntuc-income.png" style="height:34px"/>
     </span>
    </div>
   </div>
@@ -1060,7 +888,7 @@
          Are you on track to retire — or just hoping? Find out in 2 minutes.
         </div>
         <div style="flex:1; min-height:0; background:var(--surface-2); padding:10px 0;">
-         <img alt="Ad creative" class="j-anim-zoom" src="images/ad-hero-retirement.webp" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+         <img alt="Ad creative" class="j-anim-zoom" src="/assets/ads/ad-hero-retirement.webp" style="width:100%; height:100%; object-fit:cover; display:block;"/>
         </div>
         <div class="j-anim-cta" style="flex:none; display:flex; align-items:center; justify-content:center; gap:6px; background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:10px; font-size:10.5px; font-weight:600; color:var(--text-1);">
          Get report now
@@ -1129,7 +957,7 @@
           </span>
          </div>
          <div style="position:relative; flex:none; height:64px; overflow:hidden;">
-          <img alt="" src="images/ad-07-annuity.webp" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;"/>
+          <img alt="" src="/assets/ads/ad-07-annuity.webp" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;"/>
           <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,18,32,.05),rgba(11,18,32,.72));">
           </div>
           <div style="position:absolute; left:9px; right:9px; bottom:5px; text-align:left;">
@@ -1694,138 +1522,62 @@
     </p>
     <div class="nums">
      <div class="num">
-      <div class="fig">
-       74
-       <span class="u">
-        %
-       </span>
-      </div>
-      <div class="num-gauge" style="--pct:74%"><i></i></div>
-      <div class="what">
-       Singapore's critical illness protection gap
-      </div>
-      <div class="why">
-       A S$579 billion shortfall between what working Singaporeans are covered for and what they'd actually need. The demand is not the problem.
-      </div>
-      <div class="src">
-       Life Insurance Association Singapore, Protection Gap Study — published 2023
-      </div>
+      <div class="fig">74<span class="u">%</span></div>
+      <div class="what">Singapore's critical illness protection gap</div>
+      <div class="why">A S$579 billion shortfall between what working Singaporeans are covered for and what they'd actually need. The demand is not the problem.</div>
+      <div class="src">Life Insurance Association Singapore, Protection Gap Study — published 2023</div>
      </div>
      <div class="num">
-      <div class="fig">
-       80.1
-       <span class="u">
-        %
-       </span>
-      </div>
-      <div class="num-gauge" style="--pct:80.1%"><i></i></div>
-      <div class="what">
-       of Singapore internet users are on WhatsApp
-      </div>
-      <div class="why">
-       The most-used platform in the country — ahead of Facebook and Instagram. It's where a lead will actually see you.
-      </div>
-      <div class="src">
-       We Are Social / Meltwater, Digital 2025 Singapore — 2025
-      </div>
+      <div class="fig">80.1<span class="u">%</span></div>
+      <div class="what">of Singapore internet users are on WhatsApp</div>
+      <div class="why">The most-used platform in the country — ahead of Facebook and Instagram. It's where a lead will actually see you.</div>
+      <div class="src">We Are Social / Meltwater, Digital 2025 Singapore — 2025</div>
      </div>
      <div class="num">
-      <div class="fig">
-       2–3
-       <span class="u">
-        %
-       </span>
-      </div>
-      <div class="num-vs">
-       <div class="row"><span>Lists</span><div class="track"><i class="them" style="--pct:12%"></i></div><b>2–3%</b></div>
-       <div class="row"><span>Leadly</span><div class="track"><i class="us" style="--pct:100%"></i></div><b>exclusive</b></div>
-      </div>
-      <div class="what">
-       close rate on bought lead lists
-      </div>
-      <div class="why">
-       20–30 purchased leads worked to close one sale — the same name resold to 4–8 agents. Exclusive, qualified leads convert 2–3× better. Nobody else has yours.
-      </div>
-      <div class="src">
-       ActiveProspect / InsureLeads / Elite Retirement Team, purchased-lead benchmarks — 2024–2026
-      </div>
+      <div class="fig">2–3<span class="u">%</span></div>
+      <div class="what">close rate on bought lead lists</div>
+      <div class="why">20–30 purchased leads worked to close one sale — the same name resold to 4–8 agents. Exclusive, qualified leads convert 2–3× better. Nobody else has yours.</div>
+      <div class="src">ActiveProspect / InsureLeads / Elite Retirement Team, purchased-lead benchmarks — 2024–2026</div>
      </div>
      <div class="num">
-      <div class="fig">
-       94.6
-       <span class="u">
-        %
-       </span>
-      </div>
-      <div class="num-gauge" style="--pct:94.6%"><i></i></div>
-      <div class="what">
-       get online from a phone
-      </div>
-      <div class="why">
-       Your ad, your questionnaire and your first reply all land on a screen held in one hand. Anything that isn't built for that leaks.
-      </div>
-      <div class="src">
-       We Are Social / Meltwater, Digital 2025 Singapore — 2025
-      </div>
+      <div class="fig">94.6<span class="u">%</span></div>
+      <div class="what">get online from a phone</div>
+      <div class="why">Your ad, your questionnaire and your first reply all land on a screen held in one hand. Anything that isn't built for that leaks.</div>
+      <div class="src">We Are Social / Meltwater, Digital 2025 Singapore — 2025</div>
      </div>
      <div class="num is-key">
-      <div class="fig">
-       63.5
-       <span class="u">
-        %
-       </span>
-      </div>
-      <div class="num-gauge" style="--pct:63.5%"><i></i></div>
-      <div class="what">
-       of businesses never replied at all
-      </div>
-      <div class="why">
-       Of 1,000 companies sent a genuine enquiry, 635 never responded. Not slowly — never. Most leads aren't lost to competitors; they're lost to silence.
-      </div>
-      <div class="src">
-       RevenueHero, 1,000-company lead response test — 2024
-      </div>
+      <div class="fig">63.5<span class="u">%</span></div>
+      <div class="what">of businesses never replied at all</div>
+      <div class="why">Of 1,000 companies sent a genuine enquiry, 635 never responded. Not slowly — never. Most leads aren't lost to competitors; they're lost to silence.</div>
+      <div class="src">RevenueHero, 1,000-company lead response test — 2024</div>
      </div>
      <div class="num">
-      <div class="fig">
-       29
-       <span class="u">
-        hrs
-       </span>
-      </div>
-      <div class="num-vs">
-       <div class="row"><span>Them</span><div class="track"><i class="them" style="--pct:100%"></i></div><b>29 hrs</b></div>
-       <div class="row"><span>Leadly</span><div class="track"><i class="us" style="--pct:4%"></i></div><b>29 sec</b></div>
-      </div>
-      <div class="what">
-       average reply time from those who did
-      </div>
-      <div class="why">
-       More than a full day before a lead hears back. Only 17.2% answered within two minutes — which is the entire opening for anyone willing to be quick.
-      </div>
-      <div class="src">
-       RevenueHero, 1,000-company lead response test — 2024
-      </div>
+      <div class="fig">29<span class="u">hrs</span></div>
+      <div class="what">average reply time from those who did</div>
+      <div class="why">More than a full day before a lead hears back. Only 17.2% answered within two minutes — which is the entire opening for anyone willing to be quick.</div>
+      <div class="src">RevenueHero, 1,000-company lead response test — 2024</div>
      </div>
     </div>
     <p class="nums-note">
      Figures published 2023–2026. The lead-response study covers B2B companies generally, not insurance specifically — we cite it because the behaviour it measures is the same one that decides whether your leads get called.
     </p>
    </div>
+  </section>
+
   <div class="promise-wrap">
    <div class="container">
     <div class="stage-dark tex-dark promise">
-     <span class="eyebrow fx-rise">
+     <span class="eyebrow">
       Our promise
      </span>
-     <h2 class="display statement fx-rise">
+     <h2 class="display statement">
       We own the digital conversion.
       <span class="accent">
        You own the sale.
       </span>
      </h2>
      <div class="sci-grid">
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         21×
        </div>
@@ -1844,7 +1596,7 @@
         </span>
        </p>
       </article>
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         100×
        </div>
@@ -1863,7 +1615,7 @@
         </span>
        </p>
       </article>
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         42
         <span class="u">
@@ -1885,7 +1637,7 @@
         </span>
        </p>
       </article>
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         23%
        </div>
@@ -1904,7 +1656,7 @@
         </span>
        </p>
       </article>
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         7%
        </div>
@@ -1923,7 +1675,7 @@
         </span>
        </p>
       </article>
-      <article class="sci-card tex-dark fx-rise">
+      <article class="sci-card tex-dark">
        <div class="sci-fig">
         93%
        </div>
@@ -1943,26 +1695,26 @@
        </p>
       </article>
      </div>
-     <p class="sci-foot fx-rise">
+     <p class="sci-foot">
       Every figure above is from the named study, with its sample size stated. Where the data is a vendor’s own platform data rather than independent research, it says so.
      </p>
     </div>
    </div>
   </div>
-  </section>
+
   <!-- ═══════════ S3 · INTERACTIVE SYSTEM DEMO ═══════════ -->
   <section class="section" id="system">
    <div class="container">
-    <span class="eyebrow fx-rise fx-in">
+    <span class="eyebrow">
      The system, running live
     </span>
-    <h2 class="section-title fx-rise fx-in" style="margin:0 0 8px">
+    <h2 class="section-title" style="margin:0 0 8px">
      Here's exactly what we do for you.
     </h2>
-    <p class="lead fx-rise fx-in" style="max-width:64ch">
+    <p class="lead" style="max-width:64ch">
      You just saw the flow. Here's why each piece is built the way it is — every screen below is live.
     </p>
-    <div class="sys-tabs fx-rise fx-in" role="tablist">
+    <div class="sys-tabs" role="tablist">
      <button class="sys-tab is-active" data-tab="advertising">
       <span class="n">
        1
@@ -2000,152 +1752,11 @@
       Leadly Pulse
      </button>
     </div>
-    <div class="sys-body fx-rise fx-in">
+    <div class="sys-body">
      <div class="sys-stage">
       <div class="sys-anim is-active" data-item="advertising">
-       <!-- THE REEL — the real ad creatives. This IS the Advertising demo. -->
-       <div class="demo-stage">
-        <div class="glow">
-        </div>
-        <div class="reel" data-leadly-reel="">
-         <div class="reel-pivot">
-          <div class="reel-card" style="opacity: 0.915; z-index: 71; transform: rotate(-28.7deg) translateY(-640px) rotate(15.78deg) scale(0.913);">
-           <div class="art" style="background:url('images/ad-01-retirement.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Retirement
-            </div>
-            <div class="line">
-             Are you on track to retire — or just hoping?
-            </div>
-            <div class="btn-mini">
-             Free 2-min check
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.993; z-index: 87; transform: rotate(-13.2deg) translateY(-640px) rotate(7.26deg) scale(0.975);">
-           <div class="art" style="background:url('images/ad-02-income.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Income protection
-            </div>
-            <div class="line">
-             If you couldn’t work tomorrow, how long would you last?
-            </div>
-            <div class="btn-mini">
-             Find out
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 1; z-index: 98; transform: rotate(2.3deg) translateY(-640px) rotate(-1.27deg) scale(0.998);">
-           <div class="art" style="background:url('images/ad-03-legacy.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Legacy
-            </div>
-            <div class="line">
-             Your CPF doesn’t go where you think it does.
-            </div>
-            <div class="btn-mini">
-             Check yours
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.982; z-index: 82; transform: rotate(17.8deg) translateY(-640px) rotate(-9.79deg) scale(0.959);">
-           <div class="art" style="background:url('images/ad-04-ci.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Critical illness
-            </div>
-            <div class="line">
-             The bill arrives long before the recovery does.
-            </div>
-            <div class="btn-mini">
-             See the numbers
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.863; z-index: 67; transform: rotate(33.3deg) translateY(-640px) rotate(-18.32deg) scale(0.889);">
-           <div class="art" style="background:url('images/ad-05-winback.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Winback
-            </div>
-            <div class="line">
-             Still thinking it over? Most people are.
-            </div>
-            <div class="btn-mini">
-             Pick up where you left off
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.535; z-index: 51; transform: rotate(48.8deg) translateY(-640px) rotate(-26.84deg) scale(0.795);">
-           <div class="art" style="background:url('images/ad-06-advisors.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Advisors
-            </div>
-            <div class="line">
-             Stop calling strangers.
-            </div>
-            <div class="btn-mini">
-             Book a demo
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.114; z-index: 40; transform: rotate(-59.7deg) translateY(-640px) rotate(32.83deg) scale(0.718);">
-           <div class="art" style="background:url('images/ad-07-annuity.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Annuity
-            </div>
-            <div class="line">
-             What does S$4,000 a month actually cost you today?
-            </div>
-            <div class="btn-mini">
-             Work it out
-            </div>
-           </div>
-          </div>
-          <div class="reel-card" style="opacity: 0.661; z-index: 56; transform: rotate(-44.2deg) translateY(-640px) rotate(24.31deg) scale(0.825);">
-           <div class="art" style="background:url('images/ad-08-pulse.webp') center/cover no-repeat">
-           </div>
-           <div class="copy">
-            <div class="kicker">
-             Pulse
-            </div>
-            <div class="line">
-             One dashboard. Meta and Google. Live.
-            </div>
-            <div class="btn-mini">
-             Try it free
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="reel-transport">
-          <button aria-label="Pause the reel" class="reel-pause" type="button">
-           <svg fill="currentColor" height="14" viewbox="0 0 14 14" width="14">
-            <rect height="12" rx="1" width="3.4" x="2" y="1">
-            </rect>
-            <rect height="12" rx="1" width="3.4" x="8.6" y="1">
-            </rect>
-           </svg>
-          </button>
-          <div class="reel-track">
-           <div class="reel-bar" style="width: 23.14%;">
-           </div>
-          </div>
-         </div>
-        </div>
-       </div>
+        <!-- THE REEL — the real ad creatives. This IS the Advertising demo. -->
+        <div class="demo-stage"><div class="glow"></div><div data-leadly-reel></div></div>
       </div>
       <div class="sys-anim" data-item="qualifier">
        <div data-leadly-demo="qualifier" data-manual="">
@@ -2793,447 +2404,41 @@
   <!-- ═══════════ S3b · SMART QUALIFIERS — the funnel types ═══════════ -->
   <section class="section section--sunk" id="qualifiers">
    <div class="container">
-    <span class="eyebrow fx-rise fx-in">
+    <span class="eyebrow">
      Smart Qualifiers
     </span>
-    <h2 class="section-title fx-rise fx-in" style="margin:0 0 8px">
+    <h2 class="section-title" style="margin:0 0 8px">
      The filter that decides who your team calls.
     </h2>
-    <p class="lead fx-rise fx-in" style="max-width:66ch">
+    <p class="lead" style="max-width:66ch">
      A Smart Qualifier asks what your advisors would ask — so every lead arrives pre-screened and ready to talk.
     </p>
     <div class="funnel-grid">
-     <article class="funnel-card tex-dark fx-rise fx-in">
-      <p class="funnel-kicker">
-       Type 01 · Qualify
-      </p>
-      <h3 class="funnel-name">
-       The Questionnaire
-      </h3>
-      <p class="funnel-what">
-       A few branching questions that separate the ready from the curious. Your advisor opens the call already knowing the need, the budget and the timing.
-      </p>
-      <a class="funnel-link" href="/for/insurance/demos/critical-illness/" rel="noopener" target="_blank">
-       See live demo
-       <svg aria-hidden="true" fill="none" viewbox="0 0 24 24">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
-        </path>
-       </svg>
-      </a>
-      <div class="funnel-phone" data-leadly-funnel="quiz">
-       <div class="phone">
-        <div class="screen">
-         <div class="fn-top">
-          <div class="fn-brand">
-           <span class="fn-dot">
-           </span>
-           <span class="fn-title">
-            Critical illness check
-           </span>
-           <span class="fn-step">
-            1 / 5
-           </span>
-          </div>
-          <div class="fn-bar">
-           <i style="width: 20%;">
-           </i>
-          </div>
-         </div>
-         <div class="fn-body">
-          <div class="fq-card" style="opacity: 1; transform: translateX(0px);">
-           <p class="fq-q">
-            Do you have critical illness cover today?
-           </p>
-           <p class="fq-hint">
-            Anything beyond what your employer provides.
-           </p>
-           <div class="fq-opts">
-            <div class="fq-opt">
-             <span class="rd">
-             </span>
-             <span class="lb">
-              No, nothing
-             </span>
-            </div>
-            <div class="fq-opt">
-             <span class="rd">
-             </span>
-             <span class="lb">
-              Only through work
-             </span>
-            </div>
-            <div class="fq-opt">
-             <span class="rd">
-             </span>
-             <span class="lb">
-              Yes, a private policy
-             </span>
-            </div>
-           </div>
-          </div>
-         </div>
-         <div class="fn-foot">
-          Free 2-minute check · No obligation
-         </div>
-         <div class="gloss">
-         </div>
-        </div>
-        <div class="island">
-         <i>
-         </i>
-        </div>
-       </div>
-      </div>
+
+     <article class="funnel-card tex-dark">
+       <p class="funnel-kicker">Type 01 · Qualify</p>
+       <h3 class="funnel-name">The Questionnaire</h3>
+       <p class="funnel-what">A few branching questions that separate the ready from the curious. Your advisor opens the call already knowing the need, the budget and the timing.</p>
+       <a class="funnel-link" href="/for/insurance/demos/critical-illness/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+       <div data-leadly-funnel="quiz"></div>
      </article>
-     <article class="funnel-card tex-dark fx-rise fx-in">
-      <p class="funnel-kicker">
-       Type 02 · Quantify
-      </p>
-      <h3 class="funnel-name">
-       The Gap Calculator
-      </h3>
-      <p class="funnel-what">
-       Turns a vague worry into a number the prospect can't unsee. They arrive already knowing what they're short by — and asking you how to close it.
-      </p>
-      <a class="funnel-link" href="/for/insurance/demos/income-protection/" rel="noopener" target="_blank">
-       See live demo
-       <svg aria-hidden="true" fill="none" viewbox="0 0 24 24">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
-        </path>
-       </svg>
-      </a>
-      <div class="funnel-phone" data-leadly-funnel="gap">
-       <div class="phone">
-        <div class="screen">
-         <div class="fn-top">
-          <div class="fn-brand">
-           <span class="fn-dot">
-           </span>
-           <span class="fn-title">
-            Coverage gap check
-           </span>
-           <span class="fn-step">
-            3 / 3
-           </span>
-          </div>
-          <div class="fn-bar">
-           <i style="width: 33%;">
-           </i>
-          </div>
-         </div>
-         <div class="fn-body">
-          <div class="fg-wrap">
-           <div class="fg-fields">
-            <div class="fg-field on" data-f="0">
-             <div class="fg-label">
-              Monthly income
-             </div>
-             <div class="fg-value">
-              S$8,500
-             </div>
-            </div>
-            <div class="fg-field" data-f="1">
-             <div class="fg-label">
-              People who depend on it
-             </div>
-             <div class="fg-value">
-              0
-             </div>
-            </div>
-            <div class="fg-field" data-f="2">
-             <div class="fg-label">
-              Cover you already have
-             </div>
-             <div class="fg-value">
-              S$0
-             </div>
-            </div>
-           </div>
-           <div class="fg-result">
-            <div class="fg-rows">
-             <div class="fg-row">
-              <div class="fg-rl">
-               <span>
-                What your family would need
-               </span>
-               <b class="fg-need">
-                S$0
-               </b>
-              </div>
-              <div class="fg-track">
-               <div class="fg-fill need" style="width: 0px;">
-               </div>
-              </div>
-             </div>
-             <div class="fg-row">
-              <div class="fg-rl">
-               <span>
-                What they’d actually get
-               </span>
-               <b class="fg-have">
-                S$0
-               </b>
-              </div>
-              <div class="fg-track">
-               <div class="fg-fill have" style="width: 0px;">
-               </div>
-              </div>
-             </div>
-            </div>
-            <div class="fg-gap">
-             <div class="gl">
-              The gap
-             </div>
-             <div class="gv">
-              S$0
-             </div>
-            </div>
-            <p class="fg-note">
-             Rule of thumb: ten years of income. Your advisor will work out the real figure with you.
-            </p>
-           </div>
-           <div class="fg-cta">
-            See how to close it
-           </div>
-          </div>
-         </div>
-         <div class="fn-foot">
-          Takes 60 seconds · No obligation
-         </div>
-         <div class="gloss">
-         </div>
-        </div>
-        <div class="island">
-         <i>
-         </i>
-        </div>
-       </div>
-      </div>
+
+     <article class="funnel-card tex-dark">
+       <p class="funnel-kicker">Type 02 · Quantify</p>
+       <h3 class="funnel-name">The Gap Calculator</h3>
+       <p class="funnel-what">Turns a vague worry into a number the prospect can't unsee. They arrive already knowing what they're short by — and asking you how to close it.</p>
+       <a class="funnel-link" href="/for/insurance/demos/income-protection/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+       <div data-leadly-funnel="gap"></div>
      </article>
-     <article class="funnel-card tex-dark fx-rise fx-in">
-      <p class="funnel-kicker">
-       Type 03 · Convert
-      </p>
-      <h3 class="funnel-name">
-       The Booking Calendar
-      </h3>
-      <p class="funnel-what">
-       No call-back queue. The lead picks a slot from your advisor's real availability, and the invite is in both calendars before they close the tab.
-      </p>
-      <a class="funnel-link" href="/for/insurance/demos/retirement/" rel="noopener" target="_blank">
-       See live demo
-       <svg aria-hidden="true" fill="none" viewbox="0 0 24 24">
-        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
-        </path>
-       </svg>
-      </a>
-      <div class="funnel-phone" data-leadly-funnel="book">
-       <div class="phone">
-        <div class="screen">
-         <div class="fn-top">
-          <div class="fn-brand">
-           <span class="fn-dot">
-           </span>
-           <span class="fn-title">
-            Book your advisor
-           </span>
-           <span class="fn-step">
-            Last step
-           </span>
-          </div>
-          <div class="fn-bar">
-           <i style="width:100%">
-           </i>
-          </div>
-         </div>
-         <div class="fn-body">
-          <div class="fb-wrap">
-           <div class="fb-month">
-            July 2026
-           </div>
-           <div class="fb-dow">
-            <span>
-             M
-            </span>
-            <span>
-             T
-            </span>
-            <span>
-             W
-            </span>
-            <span>
-             T
-            </span>
-            <span>
-             F
-            </span>
-            <span>
-             S
-            </span>
-            <span>
-             S
-            </span>
-           </div>
-           <div class="fb-days">
-            <div class="fb-day mute">
-            </div>
-            <div class="fb-day mute">
-            </div>
-            <div class="fb-day mute" data-d="1">
-             1
-            </div>
-            <div class="fb-day mute" data-d="2">
-             2
-            </div>
-            <div class="fb-day mute" data-d="3">
-             3
-            </div>
-            <div class="fb-day mute" data-d="4">
-             4
-            </div>
-            <div class="fb-day mute" data-d="5">
-             5
-            </div>
-            <div class="fb-day mute" data-d="6">
-             6
-            </div>
-            <div class="fb-day mute" data-d="7">
-             7
-            </div>
-            <div class="fb-day mute" data-d="8">
-             8
-            </div>
-            <div class="fb-day mute" data-d="9">
-             9
-            </div>
-            <div class="fb-day mute" data-d="10">
-             10
-            </div>
-            <div class="fb-day mute" data-d="11">
-             11
-            </div>
-            <div class="fb-day mute" data-d="12">
-             12
-            </div>
-            <div class="fb-day mute" data-d="13">
-             13
-            </div>
-            <div class="fb-day mute" data-d="14">
-             14
-            </div>
-            <div class="fb-day" data-d="15">
-             15
-            </div>
-            <div class="fb-day free" data-d="16">
-             16
-            </div>
-            <div class="fb-day free on" data-d="17">
-             17
-            </div>
-            <div class="fb-day" data-d="18">
-             18
-            </div>
-            <div class="fb-day" data-d="19">
-             19
-            </div>
-            <div class="fb-day free" data-d="20">
-             20
-            </div>
-            <div class="fb-day free" data-d="21">
-             21
-            </div>
-            <div class="fb-day free" data-d="22">
-             22
-            </div>
-            <div class="fb-day free" data-d="23">
-             23
-            </div>
-            <div class="fb-day" data-d="24">
-             24
-            </div>
-            <div class="fb-day" data-d="25">
-             25
-            </div>
-            <div class="fb-day" data-d="26">
-             26
-            </div>
-            <div class="fb-day" data-d="27">
-             27
-            </div>
-            <div class="fb-day" data-d="28">
-             28
-            </div>
-            <div class="fb-day" data-d="29">
-             29
-            </div>
-            <div class="fb-day" data-d="30">
-             30
-            </div>
-            <div class="fb-day" data-d="31">
-             31
-            </div>
-           </div>
-           <div class="fb-slots">
-            <div class="sh">
-             Available times
-            </div>
-            <div class="fb-slot-row">
-             <div class="fb-slot">
-              9:30 AM
-             </div>
-             <div class="fb-slot">
-              11:30 AM
-             </div>
-             <div class="fb-slot">
-              2:00 PM
-             </div>
-             <div class="fb-slot">
-              4:30 PM
-             </div>
-            </div>
-           </div>
-          </div>
-          <div class="fb-done">
-           <div class="fb-check">
-            <svg viewbox="0 0 24 24">
-             <path d="M5 12.5l4.2 4.2L19 7">
-             </path>
-            </svg>
-           </div>
-           <div class="dt">
-            You’re booked in.
-           </div>
-           <div class="dw">
-            Friday 17 July · 11:30 AM
-            <br/>
-            A calendar invite is on its way.
-           </div>
-           <div class="fb-adv">
-            <span class="av">
-             MT
-            </span>
-            <span class="an">
-             Marcus Tan
-             <small>
-              Your advisor
-             </small>
-            </span>
-           </div>
-          </div>
-         </div>
-         <div class="fn-foot">
-          30 minutes · No obligation
-         </div>
-         <div class="gloss">
-         </div>
-        </div>
-        <div class="island">
-         <i>
-         </i>
-        </div>
-       </div>
-      </div>
+
+     <article class="funnel-card tex-dark">
+       <p class="funnel-kicker">Type 03 · Convert</p>
+       <h3 class="funnel-name">The Booking Calendar</h3>
+       <p class="funnel-what">No call-back queue. The lead picks a slot from your advisor's real availability, and the invite is in both calendars before they close the tab.</p>
+       <a class="funnel-link" href="/for/insurance/demos/retirement/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+       <div data-leadly-funnel="book"></div>
      </article>
+
     </div>
     <p class="muted" style="margin-top:clamp(56px,6vw,72px);max-width:66ch">
      Not sure which fits your campaign? That's the conversation. Every build is shaped around the offer, the audience and how warm they are when they land.
@@ -3242,425 +2447,136 @@
   </section>
   <!-- ═══════════ S4 · PRICING — the table IS the pricing section ═══════════ -->
   <section class="section" id="pricing">
-   <div class="container">
-    <span class="eyebrow fx-rise fx-in">
-     Pricing
-    </span>
-    <h2 class="section-title fx-rise fx-in" style="margin:0 0 8px">
-     One price. The whole machine.
-    </h2>
-    <p class="lead fx-rise fx-in" style="max-width:66ch">
-     No tiers. No hourly billing. No setup games.
-    </p>
-    <!-- The price used to live on a card beside a feature list. Both are gone;
-         the table says all of it. But the PRICE cannot vanish with them, so it
-         moves up here, where it is the first thing read. -->
-    <div class="price-line fx-rise fx-in">
-     <div class="price-fig">
-      <span class="fig" id="offer_price">
-       S$1,500
-      </span>
-      <span class="per">
-       per month
-       <b>
-        + your ad spend
-       </b>
-      </span>
-     </div>
-     <p class="price-note">
-      Your ad budget is billed to your own Meta account and goes straight to Meta — we never touch it, and we never mark it up. You see every dollar of it in Leadly Pulse.
-     </p>
-     <a class="btn btn-primary" data-book="" href="#">
-      <span>
-       Book demo
-      </span>
-      <i aria-hidden="true" class="btn-ico">
-      </i>
-     </a>
-    </div>
-    <div class="cmp fx-rise fx-in">
-     <table>
-      <thead>
-       <tr>
-        <th class="crit">
-         <span class="lg">
-          What you get
-         </span>
-         <span class="sm">
-          What you get
-         </span>
-        </th>
-        <th class="us">
-         <span class="lg">
-          Leadly · S$1,500/mo + ad spend
-         </span>
-         <span class="sm">
-          Leadly
-         </span>
-        </th>
-        <th>
-         <span class="lg">
-          A typical setup at this price
-         </span>
-         <span class="sm">
-          Typical
-         </span>
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td class="crit">
-         Advertising
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           Run &amp; iterated weekly
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           One ad, left to fatigue
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Smart Qualifier
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           Qualified before the call
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           Name &amp; number only
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Instant Ping
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           WhatsApp, in seconds
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           Email or daily export
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Live Call Sheet
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           One live shared sheet
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           A monthly PDF
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Winback Engine
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           Automatic, day 30 &amp; 60
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           Manual, if at all
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Leadly Pulse
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           Live, Pixel + CAPI
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           A monthly screenshot
-          </span>
-         </span>
-        </td>
-       </tr>
-       <tr>
-        <td class="crit">
-         Your ad spend
-        </td>
-        <td class="us">
-         <span class="cell">
-          <svg class="tick-svg" height="18" viewbox="0 0 24 24" width="18">
-           <circle cx="12" cy="12" r="11">
-           </circle>
-           <path d="M7 12.5l3.2 3.2L17 8.5">
-           </path>
-          </svg>
-          <span>
-           Never marked up
-          </span>
-         </span>
-        </td>
-        <td class="them">
-         <span class="cell">
-          <svg class="cross-svg" height="16" viewbox="0 0 24 24" width="16">
-           <path d="M7 7l10 10M17 7L7 17">
-           </path>
-          </svg>
-          <span>
-           Often marked up
-          </span>
-         </span>
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <!-- Add-ons used to be a separate page. Sending someone off the pricing
-         section to read a price list is how you lose them — so it opens here,
-         under the table, and closes again. -->
-    <div class="ao fx-rise fx-in">
-     <button aria-controls="aoPanel" aria-expanded="false" class="ao-toggle" id="aoToggle">
-      <span class="ao-t">
-       Add-ons &amp; ad-hoc pricing
-      </span>
-      <span class="ao-s">
-       Optional. Never bundled in to inflate the core fee.
-      </span>
-      <span aria-hidden="true" class="ao-chev">
-       <svg fill="none" viewbox="0 0 24 24">
-        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
-        </path>
-       </svg>
-      </span>
-     </button>
-     <div class="ao-panel" hidden="" id="aoPanel">
-      <div class="ao-in">
-       <p class="ao-lead">
-        The whole system is one flat price. Everything below is optional — layered on only if you want it.
-       </p>
-       <p class="ao-h">
-        Recurring add-ons
-       </p>
-       <ul class="ao-list">
-        <li class="ao-row">
-         <span class="ao-n">
-          WhatsApp automation volume
-         </span>
-         <span class="ao-d">
-          Higher outbound volumes on the WhatsApp Business API for winback and nurture, beyond what the core system includes.
-         </span>
-         <span class="ao-p">
-          On request
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          AI chat — messaging
-         </span>
-         <span class="ao-d">
-          An AI responder that greets and pre-answers on WhatsApp or web chat before a rep picks up. Sits on top of Instant Ping.
-         </span>
-         <span class="ao-p">
-          On request
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          AI chat — phone
-         </span>
-         <span class="ao-d">
-          An AI voice agent that makes or takes the first call while the lead is still warm.
-         </span>
-         <span class="ao-p">
-          On request
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          Additional managed ad spend
-         </span>
-         <span class="ao-d">
-          Management above the ad-spend band included in the core fee. For teams scaling budget hard.
-         </span>
-         <span class="ao-p">
-          On request
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          Extra funnel or vertical
-         </span>
-         <span class="ao-d">
-          A second qualifier and landing page for another product line, managed monthly.
-         </span>
-         <span class="ao-p">
-          On request
-         </span>
-        </li>
-       </ul>
-       <p class="ao-h">
-        One-off &amp; ad-hoc work
-       </p>
-       <ul class="ao-list">
-        <li class="ao-row">
-         <span class="ao-n">
-          Extra creative batch
-         </span>
-         <span class="ao-d">
-          A fresh set of ad creatives beyond the ongoing rotation. Per batch.
-         </span>
-         <span class="ao-p">
-          S$200 / 10 statics
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          Standalone landing page
-         </span>
-         <span class="ao-d">
-          A one-off page build outside the managed system. Fixed one-time build.
-         </span>
-         <span class="ao-p">
-          S$250–500 / page
-         </span>
-        </li>
-        <li class="ao-row">
-         <span class="ao-n">
-          Custom CRM integration
-         </span>
-         <span class="ao-d">
-          Wiring leads into a specific CRM, dialer or internal tool. Scoped per system.
-         </span>
-         <span class="ao-p">
-          S$250
-         </span>
-        </li>
-       </ul>
-       <p class="ao-fine">
-        Ad spend is never marked up. Whatever you set as your budget is billed straight to your own Meta account — you see every dollar of it in Leadly Pulse. The items above are the only things that ever sit on top of the flat S$1,500/month.
-       </p>
-       <button class="ao-close" id="aoClose">
-        <svg aria-hidden="true" fill="none" viewbox="0 0 24 24">
-         <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2">
-         </path>
-        </svg>
-        Minimise
-       </button>
+  <div class="container">
+    <span class="eyebrow">Pricing</span>
+    <h2 class="section-title" style="margin:0 0 8px">One machine. Two ways to run it.</h2>
+    <p class="lead" style="max-width:66ch;margin-bottom:24px">Same system either way — the only real question is who holds the data. Run it on Leadly's infrastructure, or own every piece of it yourself. Here's both, next to what a typical agency hands you.</p>
+
+    <div class="pt">
+      <div class="pt-scroll">
+        <div class="pt-inner">
+
+          <div class="pt-row pt-head">
+            <div class="pt-cell pt-corner"><span class="pt-corner-label">What you get</span></div>
+            <div class="pt-cell is-us">
+              <div class="pt-col-kicker">Fastest to launch</div>
+              <div class="pt-col-name">Managed for You</div>
+              <div class="pt-hp"><span class="pt-hp-line"><b>S$1,500</b>/mo + ad spend</span><span class="pt-hp-line is-zero"><b>S$0</b> setup</span></div>
+            </div>
+            <div class="pt-cell is-us">
+              <div class="pt-col-kicker">You own the data</div>
+              <div class="pt-col-name">100% Compliant</div>
+              <div class="pt-hp"><span class="pt-hp-line"><b>S$1,200</b>/mo + ad spend</span><span class="pt-hp-line"><b>S$1,500</b> one-time setup</span></div>
+            </div>
+            <div class="pt-cell is-them">
+              <div class="pt-col-kicker">For comparison</div>
+              <div class="pt-col-name">A typical agency</div>
+              <div class="pt-hp is-them"><span class="pt-hp-line"><b>S$1,500–3,000</b>/mo typical</span><span class="pt-hp-line">setup varies, often unlisted</span></div>
+            </div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Advertising</div><div class="pt-feat-desc">Meta &amp; Google creative, run and iterated weekly</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Run by Leadly</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Run by Leadly</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Set-and-forget campaign</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Smart Qualifier</div><div class="pt-feat-desc">Every lead qualified before it reaches an advisor</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">On <em>Leadly infrastructure</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note"><em>Codebase owned by you</em>, on hosting of your choice</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A name and a number, nothing else</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Instant Ping</div><div class="pt-feat-desc">In your team's WhatsApp within seconds</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Via <em>Leadly's integration</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Fires from <em>your WhatsApp API</em></span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">An email digest, or a morning export</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Live Call Sheet</div><div class="pt-feat-desc">One shared sheet, always current</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">In <em>Leadly's CRM</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note"><em>Your own Google Sheet</em> — Sheets API + service accounts, all under your account</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A weekly PDF you can't work from</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Winback Engine</div><div class="pt-feat-desc">Automatic re-engagement at 30 and 60 days</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">Manual follow-up, if it happens at all</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Leadly Pulse</div><div class="pt-feat-desc">Live dashboard — Pixel and CAPI, down to the ad</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A PDF slide, once every week</span></span></div>
+          </div>
+
+        </div>
       </div>
-     </div>
     </div>
-   </div>
-  </section>
+
+    <div class="ao">
+      <button class="ao-toggle" id="aoToggle" aria-expanded="false" aria-controls="aoPanel">
+        <span class="ao-t">Add-ons &amp; ad-hoc pricing</span>
+        <span class="ao-s">Optional. Never bundled in to inflate the core fee.</span>
+        <span class="ao-chev" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+
+      <div class="ao-panel" id="aoPanel" hidden>
+        <div class="ao-in">
+          <p class="ao-lead">The whole system is one flat price. Everything below is optional — layered on only if you want it.</p>
+
+          <p class="ao-h">100% Compliant — WhatsApp push tiers</p>
+          <ul class="ao-list">
+            <li class="ao-row"><span class="ao-n">Live WhatsApp 1:1 Push</span><span class="ao-d">Lead alert straight to one advisor's WhatsApp DM, from your own WhatsApp API.</span><span class="ao-p">+S$500 one-time</span></li>
+            <li class="ao-row"><span class="ao-n">Live WhatsApp 1:8 Group Push</span><span class="ao-d">Lead alert to a team group of up to 8. Dependent on WhatsApp Official Business Account approval.</span><span class="ao-p">+S$800 one-time</span></li>
+          </ul>
+
+          <p class="ao-h">Recurring add-ons</p>
+          <ul class="ao-list">
+            <li class="ao-row"><span class="ao-n">WhatsApp automation volume</span><span class="ao-d">Higher outbound volumes on the WhatsApp Business API for winback and nurture, beyond what the core system includes.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">AI chat — messaging</span><span class="ao-d">An AI responder that greets and pre-answers on WhatsApp or web chat before a rep picks up. Sits on top of Instant Ping.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">AI chat — phone</span><span class="ao-d">An AI voice agent that makes or takes the first call while the lead is still warm.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">Additional managed ad spend</span><span class="ao-d">Management above the ad-spend band included in the core fee. For teams scaling budget hard.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">Extra funnel or vertical</span><span class="ao-d">A second qualifier and landing page for another product line, managed monthly.</span><span class="ao-p">On request</span></li>
+          </ul>
+
+          <p class="ao-h">One-off &amp; ad-hoc work</p>
+          <ul class="ao-list">
+            <li class="ao-row"><span class="ao-n">Extra creative batch</span><span class="ao-d">A fresh set of ad creatives beyond the ongoing rotation. Per batch.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">Standalone landing page</span><span class="ao-d">A one-off page build outside the managed system. Fixed one-time build.</span><span class="ao-p">On request</span></li>
+            <li class="ao-row"><span class="ao-n">Custom integration</span><span class="ao-d">Wiring leads into a specific CRM, dialer or internal tool. Scoped per system.</span><span class="ao-p">On request</span></li>
+          </ul>
+
+          <p class="ao-fine">Ad spend is never marked up. Whatever you set as your budget is billed straight to your own Meta account — you see every dollar of it. The items above are the only things that ever sit on top of the core fee.</p>
+
+          <button class="ao-close" id="aoClose">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Minimise
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   <!-- ═══════════ S5 · TRUE COST CALCULATOR ═══════════ -->
   <section class="section section--sunk" id="calculator">
    <div class="container">
-    <span class="eyebrow fx-rise fx-in">
+    <span class="eyebrow">
      The 2-minute check
     </span>
-    <h2 class="section-title fx-rise fx-in" style="margin:0 0 8px">
+    <h2 class="section-title" style="margin:0 0 8px">
      What is a lead really costing you?
     </h2>
-    <p class="lead fx-rise fx-in" style="max-width:64ch; margin-bottom:36px">
+    <p class="lead" style="max-width:64ch; margin-bottom:36px">
      Ad spend, lists, tools, wasted hours — add it all up in two minutes and see what you'd save.
     </p>
     <div class="calc-grid">
@@ -3670,7 +2586,7 @@
            would be looking at — the profile assembling itself in real time, one
            answer at a time. That is the whole product argument made visible,
            and it is the reason the page says "the form is the product". -->
-     <div class="q fx-rise fx-in" id="qualifier">
+     <div class="q" id="qualifier">
       <div class="q-shell">
        <div class="q-main">
         <div class="q-steps-bar" id="qsteps">
@@ -4143,34 +3059,10 @@
    </div>
   </section>
   <footer>
-   <div class="foot-in">
-    <span>
-     © 2026 Leadly · Elephant &amp; Ostrich LLP
-    </span>
-    <span class="foot-links">
-     <a href="/privacy-policy/">
-      Privacy Policy
-     </a>
-     ·
-     <a href="/terms-and-conditions/">
-      Terms &amp; Conditions
-     </a>
-    </span>
-    <span class="foot-cta" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-     <a class="btn btn-primary" data-book="" href="#">
-      <span>
-       Book demo
-      </span>
-      <i aria-hidden="true" class="btn-ico">
-      </i>
-     </a>
-     <a class="btn btn-secondary" href="https://wa.me/6580000000?text=Hi%20Leadly%2C%20I%27d%20like%20to%20find%20out%20more." rel="noopener" target="_blank">
-      <span>
-       WhatsApp us
-      </span>
-     </a>
-    </span>
-   </div>
+    <div class="foot-in">
+      <span>© 2026 Leadly · Elephant &amp; Ostrich LLP</span>
+      <span class="foot-note">Licensed marketing partner. Not a financial adviser.</span>
+    </div>
   </footer>
   <script>
    /* ══════════════════════════════════════════════════════════════════════════
@@ -4190,7 +3082,7 @@ window.LEADLY_REEL = [
   { img:'/assets/ads/ad-08-pulse.webp',      kicker:'Pulse',             line:'One dashboard. Meta and Google. Live.',                       cta:'Try it free' }
 ];
   </script>
-  <script src="js/leadly-reel.js">
+  <script src="/assets/leadly-reel.js">
   </script>
   <script>
    (function(){
@@ -4466,22 +3358,22 @@ window.LEADLY_REEL = [
   }catch(e){}
 })();
   </script>
-  <script src="js/leadly-components.js">
+  <script src="/assets/leadly-components.js">
   </script>
-  <script defer="" src="js/leadly-pulse-tour.js">
+  <script defer="" src="/assets/leadly-pulse-tour.js">
   </script>
-  <script src="js/leadly-lockscreen.js">
+  <script src="/assets/leadly-lockscreen.js">
   </script>
-  <script src="js/leadly-funnels.js">
+  <script src="/assets/leadly-funnels.js">
   </script>
   <!-- jsPDF. The document is DRAWN, not screenshotted — real text, real print. -->
-  <script src="js/leadly-analysis.js">
+  <script src="/assets/leadly-analysis.js">
   </script>
-  <script src="js/leadly-book.js">
+  <script src="/assets/leadly-book.js">
   </script>
-  <script src="js/leadly-fx.js">
+  <script src="/assets/leadly-fx.js">
   </script>
-  <script src="js/leadly-process.js">
+  <script src="/assets/leadly-process.js">
   </script>
   <script>
    /* S3 system — tabs. Demo components are lazy-mounted on first activation. */
@@ -4512,47 +3404,83 @@ window.LEADLY_REEL = [
    transition, and without the target/property guard below its event fires this
    handler before the height animation has even started. */
 (function(){
-  var t = document.getElementById('aoToggle');
-  var p = document.getElementById('aoPanel');
-  var c = document.getElementById('aoClose');
-  if (!t || !p) return;
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function bindAccordion(toggleId, panelId, closeId){
+    var t = document.getElementById(toggleId);
+    var p = document.getElementById(panelId);
+    var c = document.getElementById(closeId);
+    if (!t || !p) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function open(){
-    p.hidden = false;
-    t.setAttribute('aria-expanded','true');
-    if (reduced){ p.style.height = 'auto'; return; }
-    var h = p.scrollHeight;
-    p.style.transition = 'height .42s cubic-bezier(.16,1,.3,1)';
-    p.style.height = '0px';
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ p.style.height = h + 'px'; });
+    function open(){
+      p.hidden = false;
+      t.setAttribute('aria-expanded','true');
+      if (reduced){ p.style.height = 'auto'; return; }
+      var h = p.scrollHeight;
+      p.style.transition = 'height .42s cubic-bezier(.16,1,.3,1)';
+      p.style.height = '0px';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ p.style.height = h + 'px'; });
+      });
+      p.addEventListener('transitionend', function done(e){
+        if (e.target !== p || e.propertyName !== 'height') return;
+        p.style.height = 'auto';
+        p.removeEventListener('transitionend', done);
+      });
+    }
+    function close(){
+      t.setAttribute('aria-expanded','false');
+      if (reduced){ p.hidden = true; return; }
+      p.style.height = p.scrollHeight + 'px';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ p.style.height = '0px'; });
+      });
+      p.addEventListener('transitionend', function done(e){
+        if (e.target !== p || e.propertyName !== 'height') return;
+        p.hidden = true; p.style.height = '';
+        p.removeEventListener('transitionend', done);
+      });
+    }
+    t.addEventListener('click', function(){
+      t.getAttribute('aria-expanded') === 'true' ? close() : open();
     });
-    p.addEventListener('transitionend', function done(e){
-      if (e.target !== p || e.propertyName !== 'height') return;
-      p.style.height = 'auto';
-      p.removeEventListener('transitionend', done);
+    if (c) c.addEventListener('click', function(){
+      close();
+      t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'center' });
     });
   }
-  function close(){
-    t.setAttribute('aria-expanded','false');
-    if (reduced){ p.hidden = true; return; }
-    p.style.height = p.scrollHeight + 'px';
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ p.style.height = '0px'; });
+  bindAccordion('aoToggle', 'aoPanel', 'aoClose');
+})();
+
+
+
+/* ── PRICING TABLE — rows rise in + ticks draw on scroll ─────────────────── */
+(function(){
+  var rows = document.querySelectorAll('.pt-row');
+  if (!rows.length) return;
+  if (!('IntersectionObserver' in window)){ rows.forEach(function(r){ r.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-    p.addEventListener('transitionend', function done(e){
-      if (e.target !== p || e.propertyName !== 'height') return;
-      p.hidden = true; p.style.height = '';
-      p.removeEventListener('transitionend', done);
+  }, { threshold:.35 });
+  rows.forEach(function(r){ io.observe(r); });
+})();
+
+/* ── HIDDEN ACCESS — type "matt" or "insurance" anywhere on the page to jump
+   between the two variants. No visible field; ignores keystrokes while
+   typing in an input/textarea. Same script, same codes, on both pages. */
+(function(){
+  var ROUTES = { matt: '/for/insurance/matt/', insurance: '/for/insurance/' };
+  var maxLen = Math.max.apply(null, Object.keys(ROUTES).map(function(k){ return k.length; }));
+  var buf = '';
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+    if (e.key.length !== 1) return;
+    buf = (buf + e.key.toLowerCase()).slice(-maxLen);
+    Object.keys(ROUTES).forEach(function(code){
+      if (buf.slice(-code.length) === code) window.location.href = ROUTES[code];
     });
-  }
-  t.addEventListener('click', function(){
-    t.getAttribute('aria-expanded') === 'true' ? close() : open();
-  });
-  if (c) c.addEventListener('click', function(){
-    close();
-    t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'center' });
   });
 })();
   </script>

@@ -172,9 +172,9 @@ function page(d) {
   </div>
   <div class="prio tex-dark" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
     <div style="min-width:220px">
-      <span class="l">This report is valid until</span>
+      <span class="l">This guide is live until</span>
       <h3 id="rp-countdown" style="font-variant-numeric:tabular-nums">7d 00:00:00</h3>
-      <p>The pricing offered with it ends when the report does.</p>
+      <p>Join within these 7 days and your setup fee is 20% off \u2014 the discount expires when this link does.</p>
     </div>
     <a class="btn btn-primary" href="https://www.leadly.sg/for/insurance"><span>Book a demo</span></a>
   </div></section>

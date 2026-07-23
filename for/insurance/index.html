@@ -20,9 +20,7 @@
 <link rel="stylesheet" href="/assets/brand.css">
 <link rel="stylesheet" href="/assets/leadly-reel.css">
 <link rel="stylesheet" href="/assets/leadly-components.css">
-<link rel="stylesheet" href="/assets/leadly-process.css">
 <link rel="stylesheet" href="/assets/leadly-lockscreen.css">
-<link rel="stylesheet" href="/assets/leadly-funnels.css">
 <link rel="stylesheet" href="/assets/leadly-analysis.css">
 <link rel="stylesheet" href="/assets/leadly-book.css">
 
@@ -51,7 +49,7 @@
 
 .hero-head{ display:grid; grid-template-columns: minmax(0,1.04fr) minmax(0,.96fr);
   gap:clamp(24px,3vw,48px); align-items:center; }
-.hero .display{ max-width:17ch; }
+.hero .display{ max-width:21ch; font-size:clamp(28px,3.1vw,42px); }
 
 /* The phone is anchored to the BOTTOM of the panel, not to the top of its
    column — so it keeps bleeding off the edge by a fixed amount no matter how
@@ -72,6 +70,9 @@
 
 /* The thesis. It used to hang off the bottom of the hero; now it sits BELOW
    the logo row, so it needs vertical rhythm on both sides, not just the top. */
+.thesis{ text-align:center; padding: clamp(56px,7vw,80px) 0 clamp(16px,2vw,24px); }
+.thesis h2{ max-width:22ch; margin:0 auto; }
+.thesis p{ margin:18px auto 0; max-width:62ch; }
 
 /* ── LOGO MARQUEE ──────────────────────────────────────────────────────── */
 .marquee{ position:relative; overflow:hidden; max-width:var(--container); margin-inline:auto; padding: clamp(40px,5vw,60px) 0 clamp(8px,1.5vw,16px);
@@ -137,106 +138,6 @@
 .pulse-showcase .tca-copy .btn{ display:flex; width:max-content; margin-top:26px; }
 .pulse-media{ align-self:stretch; min-height:clamp(300px,30vw,380px); }
 .pulse-media [data-leadly-demo]{ height:100%; min-height:clamp(300px,30vw,380px); display:block; }
-/* The Pulse tour is authored as a 1080x1080 square. Give it a square slot so it
-   scales to an exact fit rather than being cropped top and bottom. */
-.pulse-media:has([data-leadly-tour]){ padding:0; overflow:hidden; }
-.pulse-media [data-leadly-tour]{ display:block; width:100%; aspect-ratio:1/1; border-radius:inherit; }
-
-/* ── S4 · PRICING — the table is the whole section ──────────────────────────
-   The offer list and the price card are gone. They said the same thing the
-   table says, twice, and the table says it better because it says it against
-   the alternative. What could NOT go with them is the price itself, so it
-   moves up top, on its own line, where it is the first thing read. */
-.price-line{
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:center;
-  gap:clamp(20px,3vw,40px);
-  margin-top:32px; padding:24px 26px;
-  border:1px solid var(--tint-line); border-radius:var(--r-xl);
-  background:var(--tint);
-}
-.price-fig{ display:flex; align-items:baseline; gap:12px; flex:none; }
-.price-fig .fig{
-  font-size:clamp(38px,4.4vw,54px); font-weight:800; line-height:1;
-  letter-spacing:var(--tracking-display); color:var(--text-1);
-  font-variant-numeric:tabular-nums;
-}
-.price-fig .per{ font-size:14px; line-height:1.35; color:var(--text-2); font-weight:500; }
-.price-fig .per b{ display:block; color:var(--accent-ink); font-weight:600; }
-.price-note{ font-size:13.5px; line-height:1.55; color:var(--text-2); }
-.price-line .btn{ flex:none; }
-
-@media (max-width:860px){
-  .price-line{ grid-template-columns:minmax(0,1fr); gap:16px; padding:22px; text-align:left; }
-  .price-line .btn{ justify-content:center; }
-}
-
-.tick-svg circle{ fill:#FFFFFF; }
-.tick-svg path{ stroke:var(--accent-ink); stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round;
-  stroke-dasharray:16; stroke-dashoffset:16; animation:tick-draw 3s var(--ease) infinite; }
-@keyframes tick-draw{ 0%{stroke-dashoffset:16} 26%,74%{stroke-dashoffset:0} 100%{stroke-dashoffset:16} }
-.cross-svg path{ stroke:var(--text-3); stroke-width:2.2; fill:none; stroke-linecap:round; }
-
-/* ── S7 · COMPARISON ────────────────────────────────────────────────────────
-   THIS STAYS A TABLE. At every width, on every device.
-
-   Two wrong answers were tried before this one:
-     · `overflow-x:auto` on a 640px min-width table — two thirds of it sat
-       off-screen behind a sideways scroll nobody finds. Hidden.
-     · stacked cards on mobile — visible, but it stopped being a comparison.
-       A comparison table only argues when the two columns sit SIDE BY SIDE and
-       your eye can cross between them. Stack them and the argument is gone.
-
-   So the structure never changes — three columns, always. What changes is the
-   WORDS. Every cell carries a long form and a short form; the phone gets the
-   short one. The table shrinks by saying less, not by breaking apart.        */
-.cmp{ margin-top:46px; }
-.cmp table{ width:100%; border-collapse:collapse; table-layout:fixed; }
-.cmp th, .cmp td{ text-align:left; padding:16px 18px; font-size:15px; border-bottom:1px solid var(--line); vertical-align:top; }
-.cmp thead th{ font-size:12px; font-weight:600; letter-spacing:var(--tracking-eyebrow); text-transform:uppercase;
-  color:var(--text-3-aa); border-bottom:1px solid var(--line-strong); background:transparent; }
-.cmp thead th.us{ color:var(--accent-ink); background:var(--tint); }
-.cmp .crit{ width:30%; color:var(--text-2); font-weight:600; }
-.cmp td.crit{ color:var(--text-1); }
-.cmp th.us, .cmp td.us{ width:35%; }
-.cmp td.us{ color:var(--text-1); font-weight:600; background:var(--tint); }
-.cmp td.them{ color:var(--text-3-aa); }
-.cmp tbody tr:last-child td{ border-bottom:0; }
-.cmp .cell{ display:flex; align-items:flex-start; gap:9px; line-height:1.45; }
-.cmp .cell svg{ flex:none; margin-top:2px; }
-
-/* the two forms of every cell */
-.cmp .sm{ display:none; }
-.cmp .lg{ display:inline; }
-
-/* the group headers */
-.cmp tr.grp td{
-  padding:26px 18px 10px; border-bottom:1px solid var(--line-strong);
-  font-size:11.5px; font-weight:600; letter-spacing:var(--tracking-eyebrow);
-  text-transform:uppercase; color:var(--text-1); background:transparent;
-}
-
-@media (max-width:760px){
-  /* STILL A TABLE. Tighter, and it says less. */
-  .cmp .lg{ display:none; }
-  .cmp .sm{ display:inline; }
-  .cmp table{ table-layout:fixed; }
-  .cmp th, .cmp td{ padding:11px 8px; font-size:12.5px; }
-  .cmp thead th{ font-size:9.5px; letter-spacing:.06em; padding:9px 8px; }
-  .cmp .crit{ width:28%; font-size:12.5px; }
-  .cmp th.us, .cmp td.us{ width:36%; }
-  .cmp .cell{ gap:6px; line-height:1.35; }
-  .cmp .cell svg{ width:14px; height:14px; margin-top:1px; }
-  .cmp tr.grp td{ padding:18px 8px 8px; font-size:9.5px; }
-}
-@media (max-width:380px){
-  .cmp th, .cmp td{ padding:10px 6px; font-size:11.5px; }
-  .cmp thead th{ font-size:9px; }
-  .cmp .cell svg{ width:12px; height:12px; }
-  .cmp .cell{ gap:5px; }
-}
-
 
 /* ── ADD-ONS — a drawer, not a page ────────────────────────────────────────
    This used to link out to /for/insurance/pricing/. Sending a prospect who is
@@ -297,6 +198,104 @@
 }
 .ao-close:hover{ border-color:var(--accent); color:var(--accent-ink); }
 .ao-close svg{ width:15px; height:15px; }
+
+/* ── PRICING TABLE — three-column comparison (Managed / Compliant / agency) ── */
+#pricing.section{ padding-top: var(--space-7); }
+.pt{ border:1px solid var(--line); border-radius:20px; background:var(--surface);
+  box-shadow:var(--shadow-md); overflow:hidden; }
+.pt-scroll{ overflow-x:auto; }
+.pt-inner{ min-width:880px; }
+.pt-row{ display:grid; grid-template-columns:minmax(230px,1.25fr) repeat(2,minmax(200px,1fr)) minmax(190px,.95fr);
+  border-bottom:1px solid var(--line); position:relative; }
+.pt-row:last-child{ border-bottom:0; }
+.pt-cell{ padding:11px 18px; display:flex; flex-direction:column; justify-content:center; gap:3px;
+  border-left:1px solid var(--line); transition:background var(--dur-2) var(--ease); }
+.pt-cell:first-child{ border-left:0; }
+.pt-cell.is-us{ background:var(--tint); }
+.pt-row:not(.pt-head):hover .pt-cell{ background:var(--surface-2); }
+.pt-row:not(.pt-head):hover .pt-cell.is-us{ background:#DFE9FD; }
+.pt-head{ background:var(--surface); border-bottom:1px solid var(--line-strong); }
+.pt-head .pt-cell{ padding:16px 18px 14px; justify-content:flex-end; }
+.pt-col-kicker{ font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-3-aa); margin-bottom:4px; }
+.pt-cell.is-us .pt-col-kicker{ color:var(--accent-strong); }
+.pt-col-name{ font-size:16px; font-weight:700; line-height:1.2; margin-bottom:8px; }
+.pt-agency-note{ font-size:13px; color:var(--text-3-aa); line-height:1.5; }
+.pt-hp{ display:flex; flex-direction:column; gap:2px; }
+.pt-hp-line{ font-size:12.5px; font-weight:500; color:var(--text-2); line-height:1.4; }
+.pt-hp-line b{ font-size:15px; font-weight:800; letter-spacing:-.01em; color:var(--text-1);
+  font-variant-numeric:tabular-nums; }
+.pt-hp-line.is-zero b{ color:var(--accent-ink); }
+.pt-hp.is-them .pt-hp-line, .pt-hp.is-them .pt-hp-line b{ color:var(--text-3-aa); }
+.pt-hp.is-them{ margin-bottom:8px; }
+.pt-corner{ justify-content:flex-end !important; }
+.pt-corner-label{ font-size:12px; font-weight:600; letter-spacing:var(--tracking-eyebrow);
+  text-transform:uppercase; color:var(--text-3-aa); }
+.pt-feat-name{ font-size:14px; font-weight:600; color:var(--text-1); }
+.pt-feat-desc{ font-size:11.5px; color:var(--text-3-aa); line-height:1.45; }
+.pt-mark{ display:flex; align-items:flex-start; gap:10px; }
+.pt-note{ font-size:12px; line-height:1.4; color:var(--text-2); padding-top:1px; }
+.pt-cell.is-us .pt-note{ color:var(--text-1); }
+.pt-note em{ font-style:normal; color:var(--accent-strong); font-weight:600; }
+.pt-cell.is-them .pt-note{ color:var(--text-3-aa); }
+.pt .tick{ width:17px; height:17px; flex:none; }
+.pt .tick circle{ fill:var(--accent); }
+.pt .tick path{ stroke:#fff; stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:16; stroke-dashoffset:16; }
+.pt-cell.is-them .tick circle{ fill:var(--line-strong); }
+.pt-cell.is-them .tick path{ stroke:var(--text-2); }
+.pt .cross{ width:15px; height:15px; flex:none; margin-top:2px; }
+.pt .cross path{ stroke:var(--text-3); stroke-width:2.2; fill:none; stroke-linecap:round; }
+.pt-row.in .tick path{ animation:pt-tickdraw .45s var(--ease-out) forwards; }
+.pt-row.in .pt-cell:nth-child(2) .tick path{ animation-delay:.05s; }
+.pt-row.in .pt-cell:nth-child(3) .tick path{ animation-delay:.16s; }
+.pt-row.in .pt-cell:nth-child(4) .tick path{ animation-delay:.27s; }
+@keyframes pt-tickdraw{ to{ stroke-dashoffset:0; } }
+.pt-row{ opacity:0; transform:translateY(10px);
+  transition:opacity .5s var(--ease-out), transform .5s var(--ease-out); }
+.pt-row.in{ opacity:1; transform:none; }
+.pt-cta{ display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:8px 16px; border-radius:var(--r-pill); border:0; cursor:pointer;
+  font-family:var(--font); font-size:12.5px; font-weight:600; width:max-content;
+  text-decoration:none;
+  transition:background var(--dur-2) var(--ease), transform var(--dur-2) var(--ease),
+             box-shadow var(--dur-2) var(--ease); }
+.pt-cta.is-primary{ background:linear-gradient(180deg,#2A6BF0 0%, var(--accent) 55%, #0049CC 100%);
+  color:#fff; box-shadow:0 1px 2px rgba(0,60,190,.35); }
+.pt-cta.is-primary:hover{ background:var(--accent-hover); transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,60,190,.3); }
+.pt-cta.is-secondary{ background:var(--surface); color:var(--text-1); border:1px solid var(--line-strong); }
+.pt-cta.is-secondary:hover{ border-color:var(--accent); color:var(--accent-ink); transform:translateY(-1px); }
+
+/* ── CALC MODAL — the 2-minute check as a popup, opened by "Free AI Guide" ── */
+.calc-modal{ display:none; }
+.calc-modal.is-open{ display:block; position:fixed; inset:0; z-index:120; padding:0; overflow-y:auto; }
+.calc-modal[hidden]{ display:none; }
+.calc-backdrop{ position:fixed; inset:0; background:rgba(10,14,24,.56); backdrop-filter:blur(4px); }
+.calc-panel{ position:relative; background:var(--surface-2); border:1px solid var(--line);
+  border-radius:20px; box-shadow:var(--shadow-stage); max-width:1120px;
+  margin:clamp(16px,4vh,44px) auto; padding:clamp(22px,3.4vw,40px) clamp(18px,3vw,40px); }
+.calc-x{ position:absolute; top:14px; right:14px; width:38px; height:38px; border-radius:50%;
+  display:grid; place-items:center; border:1px solid var(--line-strong); background:var(--surface);
+  color:var(--text-2); cursor:pointer; z-index:2;
+  transition:background var(--dur-2) var(--ease), color var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease); }
+.calc-x:hover{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.calc-x svg{ width:16px; height:16px; }
+body.calc-lock{ overflow:hidden; }
+@media (max-width:640px){ .calc-panel{ margin:8px; border-radius:16px; } }
+@media (prefers-reduced-motion:reduce){
+  .pt-row{ opacity:1; transform:none; transition:none; }
+  .pt .tick path{ stroke-dashoffset:0; animation:none !important; }
+}
+@media (max-width:760px){
+  .pt-cell{ padding:14px 14px; }
+  .pt-head .pt-cell{ padding:20px 14px 16px; }
+  .pt-hp-line{ font-size:11px; }
+  .pt-hp-line b{ font-size:13px; }
+  .pt-feat-name{ font-size:13.5px; }
+  .pt-note, .pt-feat-desc{ font-size:11.5px; }
+}
+
 
 @media (max-width:760px){
   .ao-row{ grid-template-columns:minmax(0,1fr); gap:5px; }
@@ -664,77 +663,7 @@
   .q-main{ height:auto; min-height:0; }
   .q-stage{ overflow:visible; }
   .q-live{ position:static; height:auto; max-height:none; }
-
-  /* ── MOBILE FORM FIX ────────────────────────────────────────────────────
-     The bug a tester hit: .q-shell forced min-height:560px and the live panel
-     stacked ABOVE the question, so the stage ran ~1250px tall on an 844px
-     screen. On the multi-select steps (3 and 6) the only way forward is the
-     Continue button — and it sat ~400px below the fold with nothing on screen
-     to suggest it was there. The form was literally uncompletable without
-     blind scrolling. Three fixes: let the shell size to content, pin the nav
-     to the bottom of the viewport so Continue is ALWAYS reachable, and shrink
-     the live panel so the question starts near the top of the screen. */
-  .q-shell{ min-height:0; }
-
-  .q-nav{
-    position:sticky; bottom:0; z-index:5;
-    margin-top:18px; margin-left:-18px; margin-right:-18px;
-    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
-    background:linear-gradient(180deg, rgba(255,255,255,0), var(--surface) 22%);
-    border-top:1px solid var(--line);
-  }
-  .q-nav .btn{ min-height:48px; }          /* comfortable thumb target */
-
-  /* iOS Safari zooms the whole page when a focused input is under 16px.
-     That zoom is what makes a form feel "broken" on a phone — it never
-     zooms back out. 16px is the threshold, not a preference. */
-  .q input, .q select, .q textarea,
-  #bk-modal input, #bk-modal select, #bk-modal textarea{ font-size:16px; }
-
-  .q-opts .opt{ min-height:48px; }         /* every answer is a thumb target */
-  .q-hours{ grid-template-columns:1fr; }   /* two number fields side by side is too tight */
-  .q-consent input{ width:24px; height:24px; }   /* 18px is not a thumb target */
-  .q-consent span{ font-size:13px; }
 }
-/* a failed field must be obvious, not a 1px border change */
-.q-consent.bad{ background:var(--danger-soft); }
-.q-field-bad input{ border-color:var(--danger) !important; background:var(--danger-soft); }
-
-/* ── MOBILE TAP TARGETS ────────────────────────────────────────────────────
-   Anything you tap with a thumb needs roughly 44px of reachable area. These
-   were all comfortably clickable with a mouse and fiddly with a finger:
-   the wordmark (26x22), the "See live demo" links (38px tall) and the two
-   footer legal links (16px tall). Padding is used rather than height so
-   nothing shifts visually on desktop. */
-@media (max-width:900px){
-  .nav-logo{ display:inline-flex; align-items:center; min-height:44px; padding:4px 2px; }
-  .funnel-link{ min-height:44px; display:inline-flex; align-items:center; }
-  .foot-links a{ display:inline-block; padding:12px 2px; }
-  .foot-in{ gap:6px; }
-}
-
-@media (max-width:640px){
-  /* the live panel is the proof, but on a phone it must not push the question
-     off-screen — cap it and let it scroll internally instead of growing */
-  .q-live{ max-height:172px; overflow:auto; -webkit-overflow-scrolling:touch; }
-  .q-live-body{ gap:5px; }
-  .q-main{ padding:18px 18px 0; }
-  .q-q{ font-size:19px; line-height:1.3; }
-  .q-sub{ font-size:13.5px; }
-}
-/* ── THE NUMBERS · six sourced stat cards ───────────────────────────── */
-.nums{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:clamp(28px,4vw,44px); }
-@media (max-width:900px){ .nums{ grid-template-columns:repeat(2,1fr); gap:14px; } }
-@media (max-width:560px){ .nums{ grid-template-columns:1fr; } }
-.num{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg);
-  padding:clamp(20px,2.4vw,28px); display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow-sm); }
-.num .fig{ font-size:clamp(34px,4vw,46px); font-weight:800; line-height:1; letter-spacing:var(--tracking-display); color:var(--accent-ink); }
-.num .fig .u{ font-size:.5em; font-weight:700; margin-left:2px; letter-spacing:0; }
-.num .what{ font-size:15.5px; font-weight:600; color:var(--text-1); line-height:1.4; }
-.num .why{ font-size:13.5px; color:var(--text-2); line-height:1.55; }
-.num .src{ margin-top:auto; padding-top:10px; font-size:11.5px; color:var(--text-3-aa);
-  border-top:1px solid var(--line); line-height:1.45; }
-.nums-note{ margin-top:18px; font-size:12.5px; color:var(--text-3-aa); }
 </style>
 </head>
 <body>
@@ -761,7 +690,7 @@
          .nav-mark svg + wordmark with: <img src="/assets/leadly-logo.png" alt="Leadly"> -->
     <a href="/" class="nav-logo"><img src="/assets/leadly-logo.png" alt="Leadly"></a>
     <div class="nav-right">
-      <a class="btn btn-secondary" href="https://app.leadly.sg/demo" target="_blank" rel="noopener"><span>Leadly Pulse</span></a>
+      <button class="btn btn-secondary" type="button" data-calc-open><span>Get Free AI Report</span></button>
       <a class="btn btn-primary" href="#" data-book><span>Book demo</span><i class="btn-ico" aria-hidden="true"></i></a>
     </div>
   </div>
@@ -773,13 +702,13 @@
     <div class="stage-dark tex-dark">
       <div class="hero-head">
         <div class="hero-copy">
-          <h1 class="display">10x your leads.<br><span class="accent">Zero the chasing.</span></h1>
-          <p class="hero-lead">Your competitors reply in 29 hours. You'll reply in 29 seconds — every lead already qualified, delivered straight to your team's WhatsApp.</p>
+          <h1 class="display">Your leads are only as good as <span class="accent">the machine that catches them.</span></h1>
+          <p class="hero-lead">Filtered through our Smart Qualifier funnel — every lead arrives having already answered the questions your advisors would ask, so your team only ever calls people worth calling.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#" data-book><span>Book demo</span><i class="btn-ico" aria-hidden="true"></i></a>
             <a class="btn btn-secondary" href="#system"><span>See how it works</span></a>
           </div>
-          <p class="hero-note"><b>635 of 1,000 businesses never replied at all</b> — and the ones that did averaged 29 hours. That's the gap we close. <cite>RevenueHero, 1,000-company lead response test, 2024</cite></p>
+          <p class="hero-note"><b>160% more conversions</b> on leads called 60–120 seconds after they come in. That's the window we deliver into. <cite>Leads360 / Velocify lead-response study</cite></p>
         </div>
         <!-- INSTANT PING, shown not described: leads land on the lock screen
              and the handset buzzes. The phone bleeds off the bottom of the
@@ -810,275 +739,6 @@
     <span class="mq-item" aria-hidden="true"><img src="/assets/logos/ntuc-income.png"   alt="" style="height:34px"></span>
   </div>
 </div>
-
-<!-- ═══════════ THE PROCESS · end-to-end, click a step for deliverables ═══════════ -->
-<section class="section section--sunk" id="process">
-  <!-- header + benefits sit in the normal page container so they align with every other
-       section; ONLY the six-step rail scrolls sideways on narrow screens. -->
-  <div class="container">
-    <header class="lp-head-sec">
-      <span class="eyebrow">The process</span>
-      <h2 class="section-title" style="margin:0 0 8px">Our end-to-end lead generation process.</h2>
-      <p class="lead" style="max-width:62ch">We build the system. We bring the leads. <b style="color:var(--accent-ink);font-weight:600">You close the deals.</b></p>
-    </header>
-    <p class="lp-hint">Scroll sideways to see all six steps →</p>
-  </div>
-
-  <div class="lp-scroll">
-    <div class="lp-rail">
-      <div style="display:flex; align-items:flex-start; gap:clamp(16px,1.8vw,30px); margin-bottom:clamp(28px,3.6vw,48px);">
-
-      <!-- 1 · Creative / Advertising -->
-      <div class="lp-step" data-step="0" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.02s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.05s;">1</div>
-        <span style="position:absolute; right:-9px; top:9px; color:var(--line-strong); font-size:18px; font-weight:700;">→</span>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Creative</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">Advertising</div></div>
-        <div style="width:100%; height:336px; background:#fff; border-radius:14px; box-shadow:var(--shadow-md); border:1px solid var(--line); overflow:hidden; display:flex; flex-direction:column;">
-          <div style="flex:none; display:flex; align-items:center; gap:7px; padding:8px 9px;">
-            <div style="width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,#1E9F7A,#0F6B4F); flex:none;"></div>
-            <div style="text-align:left; line-height:1.15;"><div style="font-size:10.5px; font-weight:700; color:var(--text-1);">Axel Insurance</div><div style="font-size:8.5px; color:var(--text-3);">Sponsored</div></div>
-          </div>
-          <div style="flex:none; padding:0 10px 8px; text-align:left; font-size:9.5px; color:#344054; line-height:1.45;">Are you on track to retire — or just hoping? Find out in 2 minutes.</div>
-          <div style="flex:1; min-height:0; background:var(--surface-2); padding:10px 0;"><img class="j-anim-zoom" src="/assets/ads/ad-hero-retirement.webp" alt="Ad creative" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-          <div class="j-anim-cta" style="flex:none; display:flex; align-items:center; justify-content:center; gap:6px; background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:10px; font-size:10.5px; font-weight:600; color:var(--text-1);">Get report now <span style="font-size:11px;">›</span></div>
-          <div style="flex:none; display:flex; align-items:center; justify-content:space-around; padding:6px 4px; font-size:8px; color:#65676B; font-weight:600;">
-            <span style="display:flex; align-items:center; gap:4px;"><span style="width:11px; height:11px; border-radius:50%; border:1.4px solid #65676B; display:inline-block;"></span>Like</span>
-            <span style="display:flex; align-items:center; gap:4px;"><span style="width:11px; height:8px; border-radius:2px; border:1.4px solid #65676B; display:inline-block;"></span>Comment</span>
-            <span style="display:flex; align-items:center; gap:4px;"><span style="width:11px; height:9px; border-radius:2px; border:1.4px solid #65676B; display:inline-block; transform:rotate(-8deg);"></span>Share</span>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">We build the creative, test it in volume and run it on Meta.</div>
-      </div>
-
-      <!-- 2 · Smart Qualifier / Landing Page -->
-      <div class="lp-step" data-step="1" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.10s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.13s;">2</div>
-        <span style="position:absolute; right:-9px; top:9px; color:var(--line-strong); font-size:18px; font-weight:700;">→</span>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Smart Qualifier</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">Landing page</div></div>
-        <div style="position:relative; width:100%; height:336px; background:linear-gradient(150deg,#3a3d42,#131417 38%,#000 100%); border-radius:26px; padding:7px; box-shadow:0 1.5px 0 rgba(255,255,255,.08) inset, 0 40px 70px -16px rgba(10,14,25,.50), 0 14px 26px -10px rgba(10,14,25,.40); display:flex;"><div style="position:absolute; left:-2px; top:78px; width:2px; height:26px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; left:-2px; top:112px; width:2px; height:44px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; right:-2px; top:96px; width:2px; height:56px; background:#0A0B0D; border-radius:0 2px 2px 0;"></div>
-          <div style="flex:1; border-radius:20px; overflow:hidden; background:#fff; display:flex; flex-direction:column;">
-            <div style="flex:none; height:8px; background:#fff;"></div>
-            <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:9px 11px; border-bottom:1px solid var(--line);">
-              <div style="display:flex; align-items:center; gap:6px;"><span style="width:16px; height:16px; border-radius:5px; background:linear-gradient(135deg,#1E9F7A,#0F6B4F);"></span><span style="font-size:10px; font-weight:800; color:var(--text-1); letter-spacing:-.01em;">Axel Insurance</span></div>
-              <span style="font-size:12px; color:var(--text-3);">☰</span>
-            </div>
-            <div style="position:relative; flex:none; height:64px; overflow:hidden;">
-              <img src="/assets/ads/ad-07-annuity.webp" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block;">
-              <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,18,32,.05),rgba(11,18,32,.72));"></div>
-              <div style="position:absolute; left:9px; right:9px; bottom:5px; text-align:left;"><div style="font-size:9.5px; font-weight:800; color:#fff; line-height:1.15;">Are you on track to retire?</div></div>
-            </div>
-            <div style="flex:1; min-height:0; padding:9px 11px; text-align:left; display:flex; flex-direction:column;">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
-                <span style="font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#0F6B4F;">Question 3 of 6</span>
-                <span style="font-size:8px; font-weight:700; color:var(--text-3-aa);">50%</span>
-              </div>
-              <div style="height:3px; border-radius:99px; background:var(--surface-2); overflow:hidden; margin-bottom:8px;"><div style="height:100%; width:50%; background:#12805C; border-radius:99px;"></div></div>
-              <div style="font-size:11px; font-weight:700; color:var(--text-1); margin-bottom:7px; line-height:1.25;">When would you like to retire?</div>
-              <div style="display:flex; flex-direction:column; gap:5px;">
-                <div style="display:flex; align-items:center; gap:8px; padding:6px 10px; border:1.5px solid var(--line); border-radius:9px; font-size:10px; color:#344054;"><span style="width:12px; height:12px; border-radius:50%; border:1.5px solid #D0D5DD;"></span>Before 60</div>
-                <div class="j-anim-glow-t" style="display:flex; align-items:center; gap:8px; padding:6px 10px; border:1.5px solid transparent; border-radius:9px; font-size:10px; font-weight:600; color:#fff; background:linear-gradient(135deg,#1E9F7A,#0F6B4F);"><span style="width:12px; height:12px; border-radius:50%; background:#fff; color:#0F6B4F; font-size:7.5px; display:flex; align-items:center; justify-content:center;">✓</span>61 – 65</div>
-                <div style="display:flex; align-items:center; gap:8px; padding:6px 10px; border:1.5px solid var(--line); border-radius:9px; font-size:10px; color:#344054;"><span style="width:12px; height:12px; border-radius:50%; border:1.5px solid #D0D5DD;"></span>After 65</div>
-              </div>
-              <div style="margin-top:auto; display:flex; align-items:center; gap:9px; background:#E9F7F1; border:1px solid #BFE8D8; border-radius:10px; padding:7px 10px;">
-                <span style="width:18px; height:18px; border-radius:50%; background:#12805C; color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex:none;">✓</span>
-                <span style="font-size:8.5px; color:#0F6B4F; font-weight:600; line-height:1.25;">Instant result: you're on track</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">A smart qualifier on the page qualifies them before you ever speak.</div>
-      </div>
-
-      <!-- 3 · WA Instant Ping -->
-      <div class="lp-step" data-step="2" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.18s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.21s;">3</div>
-        <span style="position:absolute; right:-9px; top:9px; color:var(--line-strong); font-size:18px; font-weight:700;">→</span>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Instant Ping</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">WhatsApp</div></div>
-        <div style="position:relative; width:100%; height:336px; background:linear-gradient(150deg,#3a3d42,#131417 38%,#000 100%); border-radius:26px; padding:7px; box-shadow:0 1.5px 0 rgba(255,255,255,.08) inset, 0 40px 70px -16px rgba(10,14,25,.50), 0 14px 26px -10px rgba(10,14,25,.40); display:flex;"><div style="position:absolute; left:-2px; top:78px; width:2px; height:26px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; left:-2px; top:112px; width:2px; height:44px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; right:-2px; top:96px; width:2px; height:56px; background:#0A0B0D; border-radius:0 2px 2px 0;"></div>
-          <div style="flex:1; border-radius:20px; overflow:hidden; background:#ECE5DD; display:flex; flex-direction:column;">
-            <div style="flex:none; height:6px; background:#075E54;"></div>
-            <div style="flex:none; background:#075E54; padding:9px 10px; display:flex; align-items:center; gap:7px;">
-              <span style="width:20px; height:20px; border-radius:50%; background:#25D366; color:#075E54; font-size:7.5px; font-weight:700; display:flex; align-items:center; justify-content:center;">LDY</span>
-              <div style="text-align:left; line-height:1.15;"><div style="font-size:9.5px; font-weight:600; color:#fff;">Leadly · New Leads</div><div style="font-size:7.5px; color:rgba(255,255,255,.7);">You, Marcus, Priya, Wei Jie</div></div>
-            </div>
-            <div style="flex:1; min-height:0; padding:12px 9px; display:flex; flex-direction:column; justify-content:flex-end;">
-              <div style="align-self:flex-start; max-width:90%; margin-bottom:7px; background:#fff; border-radius:10px 10px 10px 2px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.09); text-align:left; opacity:.82;">
-                <div style="background:#0C8577; padding:5px 9px; font-size:8.5px; font-weight:700; color:#fff; letter-spacing:.02em;">NEW QUALIFIED LEAD</div>
-                <div style="padding:7px 9px; font-size:9.5px; color:#1F2C34; line-height:1.45;"><b>Mei T.</b> · 49<br>Wants: income protection<div style="text-align:right; font-size:8px; color:#12805C; font-weight:600; margin-top:2px;">2 min ago</div></div>
-              </div>
-              <div class="j-anim-arrive" style="align-self:flex-start; max-width:94%; background:#fff; border-radius:10px 10px 10px 2px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.1); text-align:left;">
-                <div style="background:var(--accent); padding:5px 9px; font-size:8.5px; font-weight:700; color:#fff; letter-spacing:.02em;">NEW QUALIFIED LEAD</div>
-                <div style="padding:8px 9px; font-size:10px; color:#1F2C34; line-height:1.5;"><b>Daniel L.</b> · 54<br>Wants: retirement income<br>Target: S$4–6k/mo<br>Existing plan: none<div style="text-align:right; font-size:8px; color:#12805C; font-weight:600; margin-top:3px;">just now</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">The instant they qualify, the lead pings your team's WhatsApp.</div>
-      </div>
-
-      <!-- 4 · Google Sheet Database -->
-      <div class="lp-step" data-step="3" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.26s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.29s;">4</div>
-        <span style="position:absolute; right:-9px; top:9px; color:var(--line-strong); font-size:18px; font-weight:700;">→</span>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Live Database</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">Google Sheet</div></div>
-        <div style="width:100%; height:336px; background:#fff; border-radius:12px; box-shadow:var(--shadow-md); border:1px solid var(--line); overflow:hidden; display:flex; flex-direction:column;">
-          <div style="flex:none; display:flex; align-items:center; gap:7px; padding:8px 9px; border-bottom:1px solid #E0E0E0;">
-            <span style="width:14px; height:17px; border-radius:3px; background:#188038; flex:none;"></span>
-            <span style="font-size:9.5px; color:#202124; font-weight:500; text-align:left; line-height:1.2;">Retirement — Call Sheet</span>
-            <span style="margin-left:auto; display:flex; align-items:center; gap:4px;"><span class="j-anim-livedot" style="width:6px; height:6px; border-radius:50%; background:#188038;"></span><span style="font-size:9px; color:#188038; font-weight:600;">Live</span></span>
-          </div>
-          <div style="flex:1; min-height:0; font-size:9px;">
-            <div style="display:flex; background:#E8F0FE; color:#1A3B6E; font-weight:600;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;"></div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left;">Name</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">Phone</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left;">Wants</div>
-            </div>
-            <div style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">2</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#202124;">Daniel L.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">9•••42</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Retirement</div>
-            </div>
-            <div class="j-anim-seqA" style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">3</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#202124;">Ridwan K.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">9•••07</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Family cover</div>
-            </div>
-            <div class="j-anim-seqB" style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">4</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#202124;">Chloe S.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">8•••88</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Income</div>
-            </div>
-            <div class="j-anim-seqC" style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">5</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; font-weight:600; color:#202124;">Priya M.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">9•••15</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Retirement</div>
-            </div>
-            <div class="j-anim-seqD" style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">6</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; font-weight:600; color:#202124;">Wei Jie T.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">8•••61</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Income</div>
-            </div>
-            <div class="j-anim-seqE" style="display:flex; border-top:1px solid #E8EAED;">
-              <div style="width:20px; padding:6px 4px; border-right:1px solid #E8EAED; background:#F8F9FA; color:#5F6368;">7</div>
-              <div style="flex:1.4; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; font-weight:600; color:#202124;">Amara S.</div>
-              <div style="flex:1; padding:6px 7px; border-right:1px solid #E8EAED; text-align:left; color:#1A73E8;">9•••29</div>
-              <div style="flex:1.6; padding:6px 7px; text-align:left; color:#202124;">Family cover</div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">Every lead and answer is logged live in your shared Google Sheet.</div>
-      </div>
-
-      <!-- 5 · Call While Hot & Booked -->
-      <div class="lp-step" data-step="4" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.34s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.37s;">5</div>
-        <span style="position:absolute; right:-9px; top:9px; color:var(--line-strong); font-size:18px; font-weight:700;">→</span>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Call &amp; Book</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">While the lead is still hot</div></div>
-        <div style="position:relative; width:100%; height:336px; background:linear-gradient(150deg,#3a3d42,#131417 38%,#000 100%); border-radius:26px; padding:7px; box-shadow:0 1.5px 0 rgba(255,255,255,.08) inset, 0 40px 70px -16px rgba(10,14,25,.50), 0 14px 26px -10px rgba(10,14,25,.40); display:flex;"><div style="position:absolute; left:-2px; top:78px; width:2px; height:26px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; left:-2px; top:112px; width:2px; height:44px; background:#0A0B0D; border-radius:2px 0 0 2px;"></div><div style="position:absolute; right:-2px; top:96px; width:2px; height:56px; background:#0A0B0D; border-radius:0 2px 2px 0;"></div>
-          <div style="flex:1; border-radius:20px; overflow:hidden; background:linear-gradient(180deg,#12203A,#0B1220); display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:22px 14px 20px; position:relative;">
-            <canvas class="j-fw" style="position:absolute; inset:0; pointer-events:none; z-index:5;"></canvas>
-            <div style="display:flex; flex-direction:column; align-items:center; gap:7px;">
-              <div style="position:relative; width:48px; height:48px; display:flex; align-items:center; justify-content:center;"><span class="j-ring"></span><span class="j-ring r2"></span><div style="width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:600; color:#fff;">D</div></div>
-              <div style="font-size:13px; font-weight:600; color:#fff;">Daniel L.</div>
-              <div style="font-size:10px; color:rgba(255,255,255,.72);">Connected · 04:12</div>
-            </div>
-            <div class="j-anim-check" style="width:44px; height:44px; border-radius:50%; background:var(--success); color:#fff; font-size:21px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(20,122,84,.35);">✓</div>
-            <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
-              <div style="font-size:11px; font-weight:700; color:#fff;">Appointment booked</div>
-              <div style="display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:99px; padding:5px 11px; font-size:9.5px; font-weight:600; color:#fff;">Tue, 6 Nov · 10:00am</div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">You call within minutes while the lead is still holding the phone — and lock in the appointment.</div>
-      </div>
-
-      <!-- 6 · Ad performance / Leadly Pulse -->
-      <div class="lp-step" data-step="5" style="position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; animation:j-rise .6s both; animation-delay:.5s; cursor:pointer; transition:transform .25s cubic-bezier(.16,1,.3,1);">
-        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,85,232,.32); animation:j-pop .5s both; animation-delay:.53s;">6</div>
-        <div style="line-height:1.2;"><div style="font-weight:700; font-size:clamp(13px,1.05vw,16px); color:var(--text-1); letter-spacing:var(--tracking-tight);">Ad performance</div><div style="font-size:11px; font-weight:600; color:var(--text-3-aa);">Leadly Pulse</div></div>
-        <div style="width:100%; height:336px; background:#fff; border-radius:12px; box-shadow:var(--shadow-md); border:1px solid var(--line); overflow:hidden; display:flex; flex-direction:column;">
-          <div style="flex:none; display:flex; align-items:center; gap:5px; padding:8px 10px; background:var(--surface-2); border-bottom:1px solid var(--line);">
-            <span style="width:7px; height:7px; border-radius:50%; background:#D8DCE2;"></span><span style="width:7px; height:7px; border-radius:50%; background:#D8DCE2;"></span><span style="width:7px; height:7px; border-radius:50%; background:#D8DCE2;"></span>
-            <span style="margin-left:6px; font-size:8.5px; color:var(--text-3); background:#fff; border:1px solid var(--line); border-radius:99px; padding:2px 9px;">app.leadly.sg</span>
-          </div>
-          <div style="flex:1; min-height:0; padding:11px; display:flex; flex-direction:column; gap:9px; text-align:left;">
-            <div style="display:flex; align-items:center; gap:6px;"><span style="position:relative; width:14px; height:14px; display:inline-flex; align-items:center; justify-content:center; flex:none;"><span class="j-ring" style="border-color:rgba(0,85,232,.5);"></span><span class="j-ring r2" style="border-color:rgba(0,85,232,.5);"></span><span style="width:14px; height:14px; border-radius:50%; background:var(--accent);"></span></span><span style="font-size:10px; font-weight:800; color:var(--text-1);">Leadly Pulse</span><span class="j-anim-livedot" style="margin-left:auto; width:6px; height:6px; border-radius:50%; background:#12805C;"></span><span style="font-size:8.5px; color:#12805C; font-weight:600;">Live</span></div>
-            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">
-              <div style="background:var(--surface-2); border-radius:8px; padding:8px 7px;"><div style="font-size:7.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-3-aa); margin-bottom:3px;">Spend</div><div style="font-size:12px; font-weight:800; color:var(--text-1);">S$248</div></div>
-              <div style="background:var(--surface-2); border-radius:8px; padding:8px 7px;"><div style="font-size:7.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-3-aa); margin-bottom:3px;">Leads</div><div style="font-size:12px; font-weight:800; color:var(--text-1);">87</div></div>
-              <div style="background:var(--tint); border-radius:8px; padding:8px 7px;"><div style="font-size:7.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-strong); margin-bottom:3px;">Cost / lead</div><div style="font-size:12px; font-weight:800; color:var(--accent-strong);">S$5.09</div></div>
-            </div>
-            <div style="border:1px solid var(--line); border-radius:9px; padding:9px; flex:1; min-height:0; display:flex; flex-direction:column;">
-              <div style="font-size:8px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3-aa); margin-bottom:8px;">Lead funnel</div>
-              <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:space-between; gap:2px;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <div style="width:96%; height:14px; background:#EBF1FE; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:6px;"><span style="font-size:7.5px; font-weight:700; color:#1A3B6E;">4,860</span></div>
-                  <span style="font-size:7.5px; color:var(--text-3-aa); white-space:nowrap;">Ad clicks</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <div style="width:82%; height:14px; background:#D3E1FD; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:6px;"><span style="font-size:7.5px; font-weight:700; color:#1A3B6E;">2,140</span></div>
-                  <span style="font-size:7.5px; color:var(--text-3-aa); white-space:nowrap;">Page view</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <div style="width:48%; height:14px; background:#A8C3FB; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:6px;"><span style="font-size:7.5px; font-weight:700; color:#1A3B6E;">1,030</span></div>
-                  <span style="font-size:7.5px; color:var(--text-3-aa); white-space:nowrap;">Initiated qualifier</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <div class="j-anim-check" style="width:26%; height:14px; background:var(--accent); border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:6px;"><span style="font-size:7.5px; font-weight:700; color:#fff;">87</span></div>
-                  <span style="font-size:7.5px; color:var(--text-3-aa); white-space:nowrap;">Lead submitted</span>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; font-size:8.5px; color:var(--text-3-aa);"><span>Meta · Google</span><span style="color:#12805C; font-weight:700;">▲ 18% this week</span></div>
-          </div>
-        </div>
-        <div style="font-size:12px; line-height:1.5; color:var(--text-3-aa);">Leadly Pulse shows every dollar and every lead — live, down to each ad.</div>
-      </div>
-
-    </div>
-    </div>
-  </div>
-
-  <div class="container lp-benefits-wrap">
-    <div style="background:var(--surface); border:1px solid var(--line); border-radius:var(--r-xl); box-shadow:var(--shadow-sm); padding:clamp(20px,2.4vw,32px) clamp(20px,3vw,44px); display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(20px,3vw,48px); animation:j-rise .6s both; animation-delay:.5s;">
-
-      <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="width:44px; height:44px; border-radius:50%; background:var(--tint); flex:none; display:flex; align-items:center; justify-content:center;">
-          <span style="width:20px; height:20px; border-radius:50%; border:2.5px solid var(--accent); display:flex; align-items:center; justify-content:center;"><span style="width:6px; height:6px; border-radius:50%; background:var(--accent);"></span></span>
-        </div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">More qualified leads</div><div style="font-size:12.5px; line-height:1.5; color:var(--text-3-aa);">We attract the right people who are ready to take action.</div></div>
-      </div>
-
-      <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="width:44px; height:44px; border-radius:50%; background:var(--tint); flex:none; display:flex; align-items:center; justify-content:center;">
-          <span style="width:22px; height:18px; border-radius:8px 8px 8px 2px; border:2.5px solid var(--accent); display:flex; align-items:center; justify-content:center; gap:2px;"><span style="width:2.5px; height:2.5px; border-radius:50%; background:var(--accent);"></span><span style="width:2.5px; height:2.5px; border-radius:50%; background:var(--accent);"></span><span style="width:2.5px; height:2.5px; border-radius:50%; background:var(--accent);"></span></span>
-        </div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">Higher conversion</div><div style="font-size:12.5px; line-height:1.5; color:var(--text-3-aa);">Every step is optimised to turn enquiries into meetings.</div></div>
-      </div>
-
-      <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="width:44px; height:44px; border-radius:50%; background:var(--tint); flex:none; display:flex; align-items:center; justify-content:center;">
-          <span style="position:relative; width:20px; height:20px; border-radius:50%; border:2.5px solid var(--accent); display:block;"><span style="position:absolute; left:50%; top:26%; width:2px; height:6px; background:var(--accent); transform:translateX(-50%); border-radius:2px;"></span><span style="position:absolute; left:50%; top:50%; width:5px; height:2px; background:var(--accent); border-radius:2px;"></span></span>
-        </div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">Save time &amp; resources</div><div style="font-size:12.5px; line-height:1.5; color:var(--text-3-aa);">We handle the marketing, follow-ups and qualifying for you.</div></div>
-      </div>
-
-      <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="width:44px; height:44px; border-radius:50%; background:var(--tint); flex:none; display:flex; align-items:flex-end; justify-content:center; gap:2.5px; padding:12px 0;">
-          <span style="width:3.5px; height:8px; background:var(--accent); border-radius:1px;"></span><span style="width:3.5px; height:13px; background:var(--accent); border-radius:1px;"></span><span style="width:3.5px; height:18px; background:var(--accent); border-radius:1px;"></span>
-        </div>
-        <div><div style="font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:4px;">Grow your business</div><div style="font-size:12.5px; line-height:1.5; color:var(--text-3-aa);">Consistent lead flow so you focus on what you do best — closing.</div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ S3 · INTERACTIVE SYSTEM DEMO ═══════════ -->
 <section class="section" id="system">
@@ -1157,6 +817,15 @@
   </div>
 </section>
 
+<!-- ═══════════ THE THESIS — the line that catches the page ═══════════ -->
+<section class="thesis">
+  <div class="container-narrow">
+    <h2 class="section-title">Your leads are only as good as the machine that catches them.</h2>
+    <p class="lead">Ads bring people to the door. Everything after that — the questionnaire, the routing, the follow-up, the tracking — is the part that decides whether you ever speak to them. That's the part we build.</p>
+  </div>
+</section>
+
+
 <!-- ═══════════ PULSE — the product dashboard, included in the plan ═══════════ -->
 <section class="section pulse-showcase">
   <div class="container">
@@ -1168,90 +837,91 @@
         <a class="btn btn-primary" href="https://app.leadly.sg/demo" target="_blank" rel="noopener"><span>Explore Leadly Pulse</span><i class="btn-ico" aria-hidden="true"></i></a>
       </div>
       <div class="tca-media">
-        <div class="stage-dark tex-dark pulse-media"><div data-leadly-tour></div></div>
+        <div class="stage-dark tex-dark pulse-media"><div data-leadly-demo="pulse"></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ S3b · SMART QUALIFIERS — the funnel types ═══════════ -->
-<section class="section section--sunk" id="qualifiers">
-  <div class="container">
-    <span class="eyebrow">Smart Qualifiers</span>
-    <h2 class="section-title" style="margin:0 0 8px">The filter that decides who your team calls.</h2>
-    <p class="lead" style="max-width:66ch">A Smart Qualifier is a funnel built to be answered, not endured — it asks what your advisors would ask, and it does the filtering before anyone picks up a phone. The shape changes with the campaign. These are three we run.</p>
 
-    <div class="funnel-grid">
-
-      <article class="funnel-card tex-dark">
-        <p class="funnel-kicker">Type 01 · Qualify</p>
-        <h3 class="funnel-name">The Questionnaire</h3>
-        <p class="funnel-what">A few branching questions that separate the ready from the curious. Your advisor opens the call already knowing the need, the budget and the timing.</p>
-        <a class="funnel-link" href="/for/insurance/demos/critical-illness/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div data-leadly-funnel="quiz"></div>
-      </article>
-
-      <article class="funnel-card tex-dark">
-        <p class="funnel-kicker">Type 02 · Quantify</p>
-        <h3 class="funnel-name">The Gap Calculator</h3>
-        <p class="funnel-what">Turns a vague worry into a number the prospect can't unsee. They arrive already knowing what they're short by — and asking you how to close it.</p>
-        <a class="funnel-link" href="/for/insurance/demos/income-protection/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div data-leadly-funnel="gap"></div>
-      </article>
-
-      <article class="funnel-card tex-dark">
-        <p class="funnel-kicker">Type 03 · Convert</p>
-        <h3 class="funnel-name">The Booking Calendar</h3>
-        <p class="funnel-what">No call-back queue. The lead picks a slot from your advisor's real availability, and the invite is in both calendars before they close the tab.</p>
-        <a class="funnel-link" href="/for/insurance/demos/retirement/" target="_blank" rel="noopener">See live demo <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div data-leadly-funnel="book"></div>
-      </article>
-
-    </div>
-
-    <p class="muted" style="margin-top:clamp(56px,6vw,72px);max-width:66ch">Not sure which fits your campaign? That's the conversation. Every build is shaped around the offer, the audience and how warm they are when they land.</p>
-  </div>
-</section>
 
 <!-- ═══════════ S4 · PRICING — the table IS the pricing section ═══════════ -->
 <section class="section" id="pricing">
   <div class="container">
     <span class="eyebrow">Pricing</span>
-    <h2 class="section-title" style="margin:0 0 8px">One price. The whole machine.</h2>
-    <p class="lead" style="max-width:66ch">No tiers, no hourly billing, no setup games. Your advisors stop working down a list of names, the same ad budget buys a call list of people who answered real questions, and nothing you paid for is left to go cold. Seven lines — here is exactly what that means.</p>
+    <h2 class="section-title" style="margin:0 0 8px">One machine. Two ways to run it.</h2>
+    <p class="lead" style="max-width:66ch;margin-bottom:24px">Same system either way — the only real question is who holds the data. Run it on Leadly's infrastructure, or own every piece of it yourself. Here's both, next to what a typical agency hands you.</p>
 
-    <!-- The price used to live on a card beside a feature list. Both are gone;
-         the table says all of it. But the PRICE cannot vanish with them, so it
-         moves up here, where it is the first thing read. -->
-    <div class="price-line">
-      <div class="price-fig">
-        <span class="fig" id="offer_price">S$1,500</span>
-        <span class="per">per month<b>+ your ad spend</b></span>
+    <div class="pt">
+      <div class="pt-scroll">
+        <div class="pt-inner">
+
+          <div class="pt-row pt-head">
+            <div class="pt-cell pt-corner"><span class="pt-corner-label">What you get</span></div>
+            <div class="pt-cell is-us">
+              <div class="pt-col-kicker">Fastest to launch</div>
+              <div class="pt-col-name">Managed for You</div>
+              <div class="pt-hp"><span class="pt-hp-line"><b>S$1,500</b>/mo + ad spend</span><span class="pt-hp-line is-zero"><b>S$0</b> setup</span></div>
+            </div>
+            <div class="pt-cell is-us">
+              <div class="pt-col-kicker">You own the data</div>
+              <div class="pt-col-name">100% Compliant</div>
+              <div class="pt-hp"><span class="pt-hp-line"><b>S$1,200</b>/mo + ad spend</span><span class="pt-hp-line"><b>S$1,500</b> one-time setup</span></div>
+            </div>
+            <div class="pt-cell is-them">
+              <div class="pt-col-kicker">For comparison</div>
+              <div class="pt-col-name">A typical agency</div>
+              <div class="pt-hp is-them"><span class="pt-hp-line"><b>S$1,500–3,000</b>/mo typical</span><span class="pt-hp-line">setup varies, often unlisted</span></div>
+            </div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Advertising</div><div class="pt-feat-desc">Meta &amp; Google creative, run and iterated weekly</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Run by Leadly</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Run by Leadly</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Set-and-forget campaign</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Smart Qualifier</div><div class="pt-feat-desc">Every lead qualified before it reaches an advisor</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">On <em>Leadly infrastructure</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note"><em>Codebase owned by you</em>, on hosting of your choice</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A name and a number, nothing else</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Instant Ping</div><div class="pt-feat-desc">In your team's WhatsApp within seconds</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Via <em>Leadly's integration</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Fires from <em>your WhatsApp API</em></span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">An email digest, or a morning export</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Live Call Sheet</div><div class="pt-feat-desc">One shared sheet, always current</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">In <em>Leadly's CRM</em></span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note"><em>Your own Google Sheet</em> — Sheets API + service accounts, all under your account</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A weekly PDF you can't work from</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Winback Engine</div><div class="pt-feat-desc">Automatic re-engagement at 30 and 60 days</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">Manual follow-up, if it happens at all</span></span></div>
+          </div>
+
+          <div class="pt-row">
+            <div class="pt-cell"><div class="pt-feat-name">Leadly Pulse</div><div class="pt-feat-desc">Live dashboard — Pixel and CAPI, down to the ad</div></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-us"><span class="pt-mark"><svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="pt-note">Included</span></span></div>
+            <div class="pt-cell is-them"><span class="pt-mark"><svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="pt-note">A PDF slide, once every week</span></span></div>
+          </div>
+
+        </div>
       </div>
-      <p class="price-note">Your ad budget is billed to your own Meta account and goes straight to Meta — we never touch it, and we never mark it up. You see every dollar of it in Leadly Pulse.</p>
-      <a class="btn btn-primary" href="#" data-book><span>Book demo</span><i class="btn-ico" aria-hidden="true"></i></a>
     </div>
 
-    <div class="cmp">
-      <table>
-        <thead>
-          <tr><th class="crit"><span class="lg">What you get</span><span class="sm">What you get</span></th><th class="us"><span class="lg">Leadly · S$1,500/mo + ad spend</span><span class="sm">Leadly</span></th><th><span class="lg">A typical setup at this price</span><span class="sm">Typical</span></th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="crit">Advertising</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">Meta &amp; Google creative, run and iterated weekly</span><span class="sm">Run &amp; iterated weekly</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">One ad, run until it fatigues</span><span class="sm">One ad, left to fatigue</span></span></td></tr>
-          <tr><td class="crit">Smart Qualifier</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">Every lead qualified before it reaches an advisor</span><span class="sm">Qualified before the call</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">A name and a number, nothing else</span><span class="sm">Name &amp; number only</span></span></td></tr>
-          <tr><td class="crit">Instant Ping</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">In your team’s WhatsApp within seconds</span><span class="sm">WhatsApp, in seconds</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">An email digest, or a morning export</span><span class="sm">Email or daily export</span></span></td></tr>
-          <tr><td class="crit">Live Call Sheet</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">One shared sheet, always current</span><span class="sm">One live shared sheet</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">A monthly PDF you can’t work from</span><span class="sm">A monthly PDF</span></span></td></tr>
-          <tr><td class="crit">Winback Engine</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">Automatic re-engagement at 30 and 60 days</span><span class="sm">Automatic, day 30 &amp; 60</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">Manual follow-up, if it happens at all</span><span class="sm">Manual, if at all</span></span></td></tr>
-          <tr><td class="crit">Leadly Pulse</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">Live dashboard — Pixel and CAPI, down to the ad</span><span class="sm">Live, Pixel + CAPI</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">A screenshot, once a month</span><span class="sm">A monthly screenshot</span></span></td></tr>
-          <tr><td class="crit">Your ad spend</td><td class="us"><span class="cell"><svg class="tick-svg" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg><span class="lg">Billed to your own account. Never marked up.</span><span class="sm">Never marked up</span></span></td><td class="them"><span class="cell"><svg class="cross-svg" width="16" height="16" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg><span class="lg">Often marked up, quietly</span><span class="sm">Often marked up</span></span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Add-ons used to be a separate page. Sending someone off the pricing
-         section to read a price list is how you lose them — so it opens here,
-         under the table, and closes again. -->
     <div class="ao">
       <button class="ao-toggle" id="aoToggle" aria-expanded="false" aria-controls="aoPanel">
         <span class="ao-t">Add-ons &amp; ad-hoc pricing</span>
@@ -1264,6 +934,12 @@
       <div class="ao-panel" id="aoPanel" hidden>
         <div class="ao-in">
           <p class="ao-lead">The whole system is one flat price. Everything below is optional — layered on only if you want it.</p>
+
+          <p class="ao-h">100% Compliant — WhatsApp push tiers</p>
+          <ul class="ao-list">
+            <li class="ao-row"><span class="ao-n">Live WhatsApp 1:1 Push</span><span class="ao-d">Lead alert straight to one advisor's WhatsApp DM, from your own WhatsApp API.</span><span class="ao-p">+S$500 one-time</span></li>
+            <li class="ao-row"><span class="ao-n">Live WhatsApp 1:8 Group Push</span><span class="ao-d">Lead alert to a team group of up to 8. Dependent on WhatsApp Official Business Account approval.</span><span class="ao-p">+S$800 one-time</span></li>
+          </ul>
 
           <p class="ao-h">Recurring add-ons</p>
           <ul class="ao-list">
@@ -1281,7 +957,7 @@
             <li class="ao-row"><span class="ao-n">Custom integration</span><span class="ao-d">Wiring leads into a specific CRM, dialer or internal tool. Scoped per system.</span><span class="ao-p">On request</span></li>
           </ul>
 
-          <p class="ao-fine">Ad spend is never marked up. Whatever you set as your budget is billed straight to your own Meta account — you see every dollar of it in Leadly Pulse. The items above are the only things that ever sit on top of the flat S$1,500/month.</p>
+          <p class="ao-fine">Ad spend is never marked up. Whatever you set as your budget is billed straight to your own Meta account — you see every dollar of it. The items above are the only things that ever sit on top of the core fee.</p>
 
           <button class="ao-close" id="aoClose">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1294,11 +970,15 @@
 </section>
 
 <!-- ═══════════ S5 · TRUE COST CALCULATOR ═══════════ -->
-<section class="section section--sunk" id="calculator">
-  <div class="container">
-    <span class="eyebrow">The 2-minute check</span>
-    <h2 class="section-title" style="margin:0 0 8px">What is a lead really costing you?</h2>
-    <p class="lead" style="max-width:64ch">Not just the ad spend — the agency, the freelancers, the lists, the tools and the hours your team burns chasing people. Most teams have never added it all up. Take two minutes and find out.</p>
+<section class="section section--sunk calc-modal" id="calculator" hidden>
+  <div class="calc-backdrop" data-calc-close></div>
+  <div class="container calc-panel" role="dialog" aria-modal="true" aria-label="Free AI guide — the 2-minute check">
+    <button class="calc-x" type="button" data-calc-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <span class="eyebrow">Free AI Report</span>
+    <h2 class="section-title" style="margin:0 0 8px">Tell us a little bit about your business.</h2>
+    <p class="lead" style="max-width:70ch">We'll send you a live link to your very own Leadly AI Guide — built with Claude Opus 4.8, layered with our proprietary marketing frameworks and industry experience. You get a unique analysis of your lead generation status, which parts of the infrastructure are missing, how to calculate your CPL and where it sits against industry benchmarks — plus a built-in chatbot that plays the role of your personal Leadly advisor.</p>
 
     <div class="calc-grid">
       <!-- THE 2-MINUTE CHECK.
@@ -1391,8 +1071,8 @@
 
         <div class="q-step" data-step="7">
           <div class="q-n">Last step</div>
-          <div class="q-q">Want a copy of this?</div>
-          <div class="q-sub">We’ll WhatsApp you a PDF of your full analysis — the numbers, the leaks, the 90-day plan. Yours to keep either way.</div>
+          <div class="q-q">Where do we send your AI Guide?</div>
+          <div class="q-sub">We'll WhatsApp you a live link to your very own Leadly AI Guide — your full analysis, your numbers, and your personal Leadly advisor chatbot. The link stays live for 7 days.</div>
           <form name="insurance-qualifier" method="POST" data-netlify="true" netlify-honeypot="website" id="qform" class="q-money" novalidate>
             <input type="hidden" name="form-name" value="insurance-qualifier">
             <p style="display:none"><label>Leave blank <input name="website"></label></p>
@@ -1413,10 +1093,10 @@
             <div><label for="f_em">Company email <i>— optional</i></label><input type="email" id="f_em" name="email" autocomplete="email"></div>
             <label class="q-consent" id="q_consent_l">
               <input type="checkbox" id="f_consent" name="consent" value="yes">
-              <span>Send it to me on WhatsApp. I agree to be contacted by Leadly about this analysis — PDPA-compliant, opt out any time.</span>
+              <span>Send my live link on WhatsApp. I agree to be contacted by Leadly about this analysis — PDPA-compliant, opt out any time.</span>
             </label>
-            <button type="submit" class="btn btn-primary" style="margin-top:4px;justify-content:center"><span>Send it to me</span></button>
-            <p class="q-fine">No sequence, no spam. The PDF arrives in under a minute.</p>
+            <button type="submit" class="btn btn-primary" style="margin-top:4px;justify-content:center"><span>Get my AI Guide</span></button>
+            <p class="q-fine">The link arrives in under a minute and expires in 7 days. Join while it’s live and your setup fee is 20% off — the discount ends when the link does.</p>
           </form>
         </div>
 
@@ -1461,61 +1141,6 @@
      No prose. Nine figures, each with its primary source AND its sample size,
      because a statistic without a sample is a rumour. Every one of these was
      checked against the original study — see the notes in the source lines.  -->
-<!-- ═══════════ THE NUMBERS · six sourced stats (2023–2026) ═══════════ -->
-<section class="section" id="numbers">
-  <div class="container">
-    <span class="eyebrow">The numbers</span>
-    <h2 class="section-title" style="margin:0 0 8px">Why this is worth fixing.</h2>
-    <p class="lead" style="max-width:62ch">Six figures that describe the market you're selling into — and the gap almost every team leaves open. Sources and dates on each.</p>
-
-    <div class="nums">
-      <div class="num">
-        <div class="fig">74<span class="u">%</span></div>
-        <div class="what">Singapore's critical illness protection gap</div>
-        <div class="why">A S$579 billion shortfall between what working Singaporeans are covered for and what they'd actually need. The demand is not the problem.</div>
-        <div class="src">Life Insurance Association Singapore, Protection Gap Study — published 2023</div>
-      </div>
-
-      <div class="num">
-        <div class="fig">80.1<span class="u">%</span></div>
-        <div class="what">of Singapore internet users are on WhatsApp</div>
-        <div class="why">The most-used platform in the country — ahead of Facebook and Instagram. It's where a lead will actually see you.</div>
-        <div class="src">We Are Social / Meltwater, Digital 2025 Singapore — 2025</div>
-      </div>
-
-      <div class="num">
-        <div class="fig">63.1<span class="u">%</span></div>
-        <div class="what">research brands on social before deciding</div>
-        <div class="why">Social is the first step in the buying journey here, not the last. If you're not in the feed, you're not in the consideration set.</div>
-        <div class="src">We Are Social / Meltwater, Digital 2025 Singapore — 2025</div>
-      </div>
-
-      <div class="num">
-        <div class="fig">94.6<span class="u">%</span></div>
-        <div class="what">get online from a phone</div>
-        <div class="why">Your ad, your questionnaire and your first reply all land on a screen held in one hand. Anything that isn't built for that leaks.</div>
-        <div class="src">We Are Social / Meltwater, Digital 2025 Singapore — 2025</div>
-      </div>
-
-      <div class="num">
-        <div class="fig">63.5<span class="u">%</span></div>
-        <div class="what">of businesses never replied at all</div>
-        <div class="why">Of 1,000 companies sent a genuine enquiry, 635 never responded. Not slowly — never. Most leads aren't lost to competitors; they're lost to silence.</div>
-        <div class="src">RevenueHero, 1,000-company lead response test — 2024</div>
-      </div>
-
-      <div class="num">
-        <div class="fig">29<span class="u">hrs</span></div>
-        <div class="what">average reply time from those who did</div>
-        <div class="why">More than a full day before a lead hears back. Only 17.2% answered within two minutes — which is the entire opening for anyone willing to be quick.</div>
-        <div class="src">RevenueHero, 1,000-company lead response test — 2024</div>
-      </div>
-    </div>
-
-    <p class="nums-note">Figures published 2023–2026. The lead-response study covers B2B companies generally, not insurance specifically — we cite it because the behaviour it measures is the same one that decides whether your leads get called.</p>
-  </div>
-</section>
-
 <div class="promise-wrap">
   <div class="container">
     <div class="stage-dark tex-dark promise">
@@ -1524,44 +1149,44 @@
 
       <div class="sci-grid">
         <article class="sci-card tex-dark">
-          <div class="sci-fig">21×</div>
-          <p class="sci-claim">more likely to qualify a lead</p>
-          <p class="sci-detail">calling at 5 minutes versus 30 minutes. The decay is a cliff, not a slope.</p>
-          <p class="sci-src"><b>MIT / InsideSales, 2007</b><span>15,000+ leads · 100,000+ dials</span></p>
+          <div class="sci-fig">74<span class="u">%</span></div>
+          <p class="sci-claim">Singapore's critical illness protection gap</p>
+          <p class="sci-detail">a S$579 billion shortfall between what working Singaporeans are covered for and what they'd actually need. The demand is not the problem.</p>
+          <p class="sci-src"><b>LIA Singapore, Protection Gap Study, 2023</b><span>Industry-wide study</span></p>
         </article>
         <article class="sci-card tex-dark">
-          <div class="sci-fig">100×</div>
-          <p class="sci-claim">more likely to even reach them</p>
-          <p class="sci-detail">same 5-minute window. Qualifying is moot if nobody picks up.</p>
-          <p class="sci-src"><b>MIT / InsideSales, 2007</b><span>Same study</span></p>
+          <div class="sci-fig">80.1<span class="u">%</span></div>
+          <p class="sci-claim">of Singapore internet users are on WhatsApp</p>
+          <p class="sci-detail">the most-used platform in the country — ahead of Facebook and Instagram. It's where a lead will actually see you.</p>
+          <p class="sci-src"><b>We Are Social / Meltwater, 2025</b><span>Digital 2025 Singapore report</span></p>
         </article>
         <article class="sci-card tex-dark">
-          <div class="sci-fig">42<span class="u">hrs</span></div>
-          <p class="sci-claim">hours to first contact</p>
-          <p class="sci-detail">the average time a company takes to respond to a web lead</p>
-          <p class="sci-src"><b>Harvard Business Review, 2011</b><span>Audit of 2,241 US companies</span></p>
+          <div class="sci-fig">2–3<span class="u">%</span></div>
+          <p class="sci-claim">close rate on bought lead lists</p>
+          <p class="sci-detail">20–30 purchased leads worked to close one sale — the same name resold to 4–8 agents. Exclusive, qualified leads convert 2–3× better.</p>
+          <p class="sci-src"><b>ActiveProspect / InsureLeads / Elite Retirement Team</b><span>Purchased-lead benchmarks, 2024–2026</span></p>
         </article>
         <article class="sci-card tex-dark">
-          <div class="sci-fig">23%</div>
-          <p class="sci-claim">never respond at all</p>
-          <p class="sci-detail">of audited companies never made contact with the lead. Ever.</p>
-          <p class="sci-src"><b>Harvard Business Review, 2011</b><span>Same audit</span></p>
+          <div class="sci-fig">94.6<span class="u">%</span></div>
+          <p class="sci-claim">get online from a phone</p>
+          <p class="sci-detail">your ad, your questionnaire and your first reply all land on a screen held in one hand. Anything that isn't built for that leaks.</p>
+          <p class="sci-src"><b>We Are Social / Meltwater, 2025</b><span>Digital 2025 Singapore report</span></p>
         </article>
         <article class="sci-card tex-dark">
-          <div class="sci-fig">7%</div>
-          <p class="sci-claim">respond within five minutes</p>
-          <p class="sci-detail">of 433 firms tested. 55% had still not responded after five business days.</p>
-          <p class="sci-src"><b>Drift Lead Response Survey, 2017</b><span>433 B2B companies</span></p>
+          <div class="sci-fig">63.5<span class="u">%</span></div>
+          <p class="sci-claim">of businesses never replied at all</p>
+          <p class="sci-detail">of 1,000 companies sent a genuine enquiry, 635 never responded. Not slowly — never. Most leads aren't lost to competitors; they're lost to silence.</p>
+          <p class="sci-src"><b>RevenueHero, 2024</b><span>1,000-company lead response test</span></p>
         </article>
         <article class="sci-card tex-dark">
-          <div class="sci-fig">93%</div>
-          <p class="sci-claim">are reached by the 6th call</p>
-          <p class="sci-detail">of the leads that convert. Most teams stop after one.</p>
-          <p class="sci-src"><b>Velocify, c.2013</b><span>~3.5m leads · platform data, not academic</span></p>
+          <div class="sci-fig">29<span class="u">hrs</span></div>
+          <p class="sci-claim">average reply time from those who did</p>
+          <p class="sci-detail">more than a full day before a lead hears back. Only 17.2% answered within two minutes — the entire opening for anyone willing to be quick.</p>
+          <p class="sci-src"><b>RevenueHero, 2024</b><span>Same 1,000-company test</span></p>
         </article>
       </div>
 
-      <p class="sci-foot">Every figure above is from the named study, with its sample size stated. Where the data is a vendor’s own platform data rather than independent research, it says so.</p>
+      <p class="sci-foot">Figures published 2023–2026. The lead-response study covers B2B companies generally, not insurance specifically — we cite it because the behaviour it measures is the same one that decides whether your leads get called.</p>
     </div>
   </div>
 </div>
@@ -1660,7 +1285,7 @@ window.LEADLY_REEL = [
   window.__q_paintLive = paintLive;
   window.__q_LIVE = LIVE;
 
-  function show(n, userMoved){
+  function show(n){
     steps.forEach(function(s){ s.classList.toggle('on', +s.dataset.step === n); });
     segs.forEach(function(sg, i){
       sg.classList.toggle('done', i < n - 1);
@@ -1670,26 +1295,12 @@ window.LEADLY_REEL = [
     backB.style.display = (n > 1 && n <= TOTAL) ? "" : "none";
     nav.style.display = (n >= 7) ? "none" : "flex";   /* the form has its OWN button */
     nextB.disabled = !valid(n);
-
-    /* MOBILE: bring the new question to the top of the screen.
-       Without this the phone keeps whatever scroll position the last question
-       left it at, so a taller question opens with its options — and the
-       Continue button — below the fold. That is what made the form feel
-       broken: people answered, saw nothing happen, and had no reason to
-       suspect there was a button 400px further down. */
-    if (userMoved && window.matchMedia('(max-width:900px)').matches) {
-      var on = document.querySelector('.q-step.on');
-      if (on) {
-        var y = on.getBoundingClientRect().top + window.pageYOffset - 64;
-        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-      }
-    }
   }
 
   function goNext(){
     if(cur >= 7) return;
     if(cur === 6){ dl.push({ event:'qualifier_complete' }); fill(); }
-    show(cur + 1, true);
+    show(cur + 1);
   }
 
   document.querySelectorAll('.q-opts').forEach(function(grp){
@@ -1779,7 +1390,7 @@ window.LEADLY_REEL = [
   });
 
   nextB.addEventListener('click', goNext);
-  backB.addEventListener('click', function(){ clearTimeout(advTimer); show(Math.max(1, cur - 1), true); });
+  backB.addEventListener('click', function(){ clearTimeout(advTimer); show(Math.max(1, cur - 1)); });
 
   document.getElementById('qform').addEventListener('submit', function(e){
     /* preventDefault IS LOAD-BEARING. A native POST navigates away and destroys
@@ -1804,27 +1415,12 @@ window.LEADLY_REEL = [
     var digits = waI.value.replace(/[^\d]/g,'').replace(/^65/,'');
     if (!/^[89]\d{7}$/.test(digits)) { waWrap.classList.add('q-field-bad'); ok = false; }
     if (!consI.checked) { consL.classList.add('bad'); ok = false; }
-    if (!ok) {
-      /* THIS RETURN USED TO BE SILENT. On a phone the offending field —
-         usually the consent checkbox — sits below the fold, so tapping
-         "Send it to me" appeared to do absolutely nothing. That is the exact
-         symptom a tester reported as "can't even complete the form". Now the
-         first problem is scrolled into view and focused, so the form always
-         explains itself. */
-      var firstBad = form.querySelector('.q-field-bad, .q-consent.bad');
-      if (firstBad) {
-        var y = firstBad.getBoundingClientRect().top + window.pageYOffset - 90;
-        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-        var focusable = firstBad.querySelector('input, textarea, select');
-        if (focusable) setTimeout(function(){ try{ focusable.focus({preventScroll:true}); }catch(_){ focusable.focus(); } }, 320);
-      }
-      return;
-    }
+    if (!ok) return;
 
     dl.push({ event:'generate_lead', lead_type:'insurance', priority: document.getElementById('f_prio').value });
 
     var run = function(){
-      show(8, true);   /* the analysis step — steps were renumbered 9→8 when the timing question was removed */
+      show(8);   /* the analysis step — steps were renumbered 9→8 when the timing question was removed */
       document.getElementById('qualifier').classList.add('is-analysis');
       if (window.LeadlyAnalysis && window.__LEADLY_FACTS) {
         window.__LEADLY_FACTS.contact = {
@@ -1871,14 +1467,11 @@ window.LEADLY_REEL = [
 </script>
 
 <script src="/assets/leadly-components.js"></script>
-<script src="/assets/leadly-pulse-tour.js" defer></script>
 <script src="/assets/leadly-lockscreen.js"></script>
-<script src="/assets/leadly-funnels.js"></script>
 <!-- jsPDF. The document is DRAWN, not screenshotted — real text, real print. -->
 <script src="/assets/leadly-analysis.js"></script>
 <script src="/assets/leadly-book.js"></script>
 <script src="/assets/leadly-fx.js"></script>
-<script src="/assets/leadly-process.js"></script>
 <script>
 /* S3 system — tabs. Demo components are lazy-mounted on first activation. */
 (function(){
@@ -1908,47 +1501,110 @@ window.LEADLY_REEL = [
    transition, and without the target/property guard below its event fires this
    handler before the height animation has even started. */
 (function(){
-  var t = document.getElementById('aoToggle');
-  var p = document.getElementById('aoPanel');
-  var c = document.getElementById('aoClose');
-  if (!t || !p) return;
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function bindAccordion(toggleId, panelId, closeId){
+    var t = document.getElementById(toggleId);
+    var p = document.getElementById(panelId);
+    var c = document.getElementById(closeId);
+    if (!t || !p) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    function open(){
+      p.hidden = false;
+      t.setAttribute('aria-expanded','true');
+      if (reduced){ p.style.height = 'auto'; return; }
+      var h = p.scrollHeight;
+      p.style.transition = 'height .42s cubic-bezier(.16,1,.3,1)';
+      p.style.height = '0px';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ p.style.height = h + 'px'; });
+      });
+      p.addEventListener('transitionend', function done(e){
+        if (e.target !== p || e.propertyName !== 'height') return;
+        p.style.height = 'auto';
+        p.removeEventListener('transitionend', done);
+      });
+    }
+    function close(){
+      t.setAttribute('aria-expanded','false');
+      if (reduced){ p.hidden = true; return; }
+      p.style.height = p.scrollHeight + 'px';
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ p.style.height = '0px'; });
+      });
+      p.addEventListener('transitionend', function done(e){
+        if (e.target !== p || e.propertyName !== 'height') return;
+        p.hidden = true; p.style.height = '';
+        p.removeEventListener('transitionend', done);
+      });
+    }
+    t.addEventListener('click', function(){
+      t.getAttribute('aria-expanded') === 'true' ? close() : open();
+    });
+    if (c) c.addEventListener('click', function(){
+      close();
+      t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'center' });
+    });
+  }
+  bindAccordion('aoToggle', 'aoPanel', 'aoClose');
+})();
+
+
+
+/* ── PRICING TABLE — rows rise in + ticks draw on scroll ─────────────────── */
+(function(){
+  var rows = document.querySelectorAll('.pt-row');
+  if (!rows.length) return;
+  if (!('IntersectionObserver' in window)){ rows.forEach(function(r){ r.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:.35 });
+  rows.forEach(function(r){ io.observe(r); });
+})();
+
+
+/* ── FREE AI GUIDE — opens the 2-minute check as a modal ─────────────────── */
+(function(){
+  var modal = document.getElementById('calculator');
+  if (!modal) return;
   function open(){
-    p.hidden = false;
-    t.setAttribute('aria-expanded','true');
-    if (reduced){ p.style.height = 'auto'; return; }
-    var h = p.scrollHeight;
-    p.style.transition = 'height .42s cubic-bezier(.16,1,.3,1)';
-    p.style.height = '0px';
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ p.style.height = h + 'px'; });
-    });
-    p.addEventListener('transitionend', function done(e){
-      if (e.target !== p || e.propertyName !== 'height') return;
-      p.style.height = 'auto';
-      p.removeEventListener('transitionend', done);
-    });
+    modal.hidden = false;
+    modal.classList.add('is-open');
+    document.body.classList.add('calc-lock');
+    modal.scrollTop = 0;
   }
   function close(){
-    t.setAttribute('aria-expanded','false');
-    if (reduced){ p.hidden = true; return; }
-    p.style.height = p.scrollHeight + 'px';
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ p.style.height = '0px'; });
-    });
-    p.addEventListener('transitionend', function done(e){
-      if (e.target !== p || e.propertyName !== 'height') return;
-      p.hidden = true; p.style.height = '';
-      p.removeEventListener('transitionend', done);
-    });
+    modal.classList.remove('is-open');
+    modal.hidden = true;
+    document.body.classList.remove('calc-lock');
   }
-  t.addEventListener('click', function(){
-    t.getAttribute('aria-expanded') === 'true' ? close() : open();
+  document.querySelectorAll('[data-calc-open]').forEach(function(b){
+    b.addEventListener('click', function(e){ e.preventDefault(); open(); });
   });
-  if (c) c.addEventListener('click', function(){
-    close();
-    t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'center' });
+  modal.querySelectorAll('[data-calc-close]').forEach(function(b){
+    b.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  });
+})();
+
+/* ── HIDDEN ACCESS — type "matt" or "insurance" anywhere on the page to jump
+   between the two variants. No visible field; ignores keystrokes while
+   typing in an input/textarea. Same script, same codes, on both pages. */
+(function(){
+  var ROUTES = { matt: '/for/insurance/matt/', insurance: '/for/insurance/' };
+  var maxLen = Math.max.apply(null, Object.keys(ROUTES).map(function(k){ return k.length; }));
+  var buf = '';
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+    if (e.key.length !== 1) return;
+    buf = (buf + e.key.toLowerCase()).slice(-maxLen);
+    Object.keys(ROUTES).forEach(function(code){
+      if (buf.slice(-code.length) === code) window.location.href = ROUTES[code];
+    });
   });
 })();
 </script>
